@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: sanjeev
+Build-Jdk: 17.0.6
+Implementation-Title: reviewer Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.cs691
+Implementation-URL: http://www.example.com
+Created-By: Maven Integration for Eclipse
+

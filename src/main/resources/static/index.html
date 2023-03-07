@@ -24,10 +24,9 @@
     <!-- This code is for the headers -->
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-        <div class="navbar-header"
-          onclick="window.open('file:///Users/besen/Desktop/Front_End/Project/pj/Test/index.html','_self')">
-          <img src="./images/Reviewer_logo (1).png" width="40px">
-          <a href="/" class="navbar-brand">Reviewer</a>
+        <div class="col-lg-2" style="padding-top: 10px;" onclick="location.reload()">
+          <img src="./images/Reviewer_logo (1).png" width="30px;" alt="Your Image" class="img-fluid" style="float: left; margin-right: 10px;">
+          <p style="font-size: 25px;font-weight: bolder;">Reviewer</p>
         </div>
         <!-- Search button section -->
         <form class="navbar-form navbar-left">
@@ -56,15 +55,15 @@
           </div>
         </form>
         <!-- The code for the search button ends here -->
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">New York, NY<span class="glyphicon glyphicon-map-marker"></span></a></li>
+        <ul class="nav navbar-nav navbar-right" style="padding-top:10px;padding-right: 10px;">
+          <li><a href="#" style="padding:10px;margin-right: 20px;">New York, NY<span class="glyphicon glyphicon-map-marker"></span></a></li>
           <li>
 
           <li class="dropdown">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a id="account_dropdown_icon" class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-color:white;padding:5px;border-radius:7px;border-style:solid">
               <i class="fa fa-user-circle"></i> Sign In
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <div id="account_dropdown" class="dropdown-menu dropdown-menu-right">
               <form class="px-4 py-3">
                 <div class="form-group">
                   <label for="exampleDropdownFormEmail1">Email address</label>
@@ -93,14 +92,14 @@
         </ul>
       </div>
     </nav>
-    <hr>
+    <hr style="margin: 0px;">
   </section>
 
   <section class="content" id="page_body">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-2">
-          <h3>Categories</h3>
+          <h3 style="text-align: center;">Categories</h3>
           <div class="vertical-menu">
             <a href="#" class="active">Restaurants</a>
             <a href="#">Mesume</a>
@@ -114,7 +113,7 @@
 
         </div>
         <!-- Merchants section -->
-        <div class="col-lg-1">
+        <div class="col-lg-1" style="width: 10px; height: max-content;">
           <div class="category-block"></div>
         </div>
 

@@ -1,6 +1,6 @@
 .first-page {
   background-color: #080a1f;
-  padding: 50px;
+  padding: 10px;
 }
 
 .container-fluid {
@@ -118,7 +118,7 @@ a {
 .content {
   background-color: #080a1f;
   padding-top: 0px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .row {

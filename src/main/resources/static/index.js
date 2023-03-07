@@ -14,10 +14,25 @@ function signIn(){
         method: 'POST',
         body: formData
       })
-        .then(response => response.text())
-        .then(data => {
+      .then(response => {
+        const statusCode = response.status;
+        return response.text().then(data => ({ statusCode, data }));
+        })
+        .then(result => {
           // Handle the response data
-          alert(data)
+          const user = JSON.parse(result.data)
+          if(result.statusCode == 200){
+            var div_body = document.getElementById("account_dropdown_icon")
+            div_body.innerHTML = "<img width=\"20px\" src=\"./images/user.png\"/>  "+user["firstName"]
+            console.log(user)
+
+            div_body = document.getElementById("account_dropdown")
+            div_body.innerHTML = "My Account<br>Preferences<br>Modify Account<br>View Account Details<br>Customer Support<br><br><button onclick=\"location.reload()\" class=\"btn btn-primary\">Sign Out</button>"
+          }
+          else {
+            alert(user["email"])
+            console.log(result.data)
+          }
         })
         .catch(error => {
           // Handle errors
@@ -73,9 +88,3 @@ function openRegister(){
           console.log('error', error)
         });
 }
-
-
-
-
-
-

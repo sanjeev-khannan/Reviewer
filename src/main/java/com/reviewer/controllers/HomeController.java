@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-   @GetMapping("/create")
-    public ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("signup.html");
-        return modelAndView;
-    }
+//    @GetMapping("/create")
+//     public ModelAndView home() {
+//         ModelAndView modelAndView = new ModelAndView();
+//         modelAndView.setViewName("signup.html");
+//         return modelAndView;
+//     }
 }

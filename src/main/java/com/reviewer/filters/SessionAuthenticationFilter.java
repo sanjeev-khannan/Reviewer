@@ -18,7 +18,7 @@ public class SessionAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-    	System.out.println("Got in here");
+        System.out.println("Got in here");
         String sessionId = getSessionIdFromCookie(request);
         if (true) {
             if (true) {

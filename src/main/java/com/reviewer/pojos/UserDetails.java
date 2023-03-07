@@ -15,49 +15,49 @@ import jakarta.persistence.Table;
 @Table(name = "userdetails")
 public class UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	private Long userId;
 
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
+	@Column(name = "email", nullable = false, unique = true)
+	private String email;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+	@Column(name = "password", nullable = false)
+	private String password;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+	@Column(name = "role", nullable = false)
+	private String role;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+	@Column(name = "first_name", nullable = false)
+	private String firstName;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+	@Column(name = "last_name", nullable = false)
+	private String lastName;
 
-    @Column(name = "address_line_1")
-    private String addressLine1;
+	@Column(name = "address_line_1")
+	private String addressLine1;
 
-    @Column(name = "address_line_2")
-    private String addressLine2;
+	@Column(name = "address_line_2")
+	private String addressLine2;
 
-    @Column(name = "city")
-    private String city;
+	@Column(name = "city")
+	private String city;
 
-    @Column(name = "state")
-    private String state;
+	@Column(name = "state")
+	private String state;
 
-    @Column(name = "zip_code")
-    private String zipCode;
+	@Column(name = "zip_code")
+	private String zipCode;
 
-    @Column(name = "mobile_number", unique = true)
-    private String mobileNumber;
+	@Column(name = "mobile_number", unique = true)
+	private String mobileNumber;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
+	@Column(name = "updated_at", nullable = false)
+	private LocalDateTime updatedAt;
 
 	public String getEmail() {
 		return email;
@@ -148,14 +148,14 @@ public class UserDetails {
 	}
 
 	@PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = this.createdAt;
-    }
+	protected void onCreate() {
+		this.createdAt = LocalDateTime.now();
+		this.updatedAt = this.createdAt;
+	}
 
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = LocalDateTime.now();
+	}
 
 }

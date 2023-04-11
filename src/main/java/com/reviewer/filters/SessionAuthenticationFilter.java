@@ -19,6 +19,7 @@ public class SessionAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         System.out.println("Got in here");
+        System.out.println(JwtUtils.generateToken("sanjeev"));
         String sessionId = getSessionIdFromCookie(request);
         if (true) {
             if (true) {

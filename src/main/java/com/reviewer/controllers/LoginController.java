@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reviewer.pojos.UserDetails;
+import com.reviewer.pojos.User;
 import com.reviewer.services.LoginService;
 
 import jakarta.servlet.http.HttpSession;
@@ -20,24 +20,24 @@ public class LoginController {
 	private LoginService loginService;
 
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public ResponseEntity<UserDetails> login(HttpSession httpsession, @RequestParam String email,
+	public ResponseEntity<User> login(HttpSession httpsession, @RequestParam String email,
 			@RequestParam String password) {
 
 		try {
 
-			UserDetails user = loginService.authenticateUser(email, password);
+			User user = loginService.authenticateUser(email, password);
 
 			if (user != null) {
 				return ResponseEntity.ok(user);
 			} else {
-				user = new UserDetails();
+				user = new User();
 				user.setEmail("Invalid Email | Password");
 				return ResponseEntity.badRequest().body(user);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			UserDetails user = new UserDetails();
+			User user = new User();
 			user.setEmail("Unexpected Error occured during Login!!");
 			return ResponseEntity.internalServerError().body(user);
 		}
@@ -45,7 +45,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(path = "/signup", method = RequestMethod.POST)
-	public ResponseEntity<String> signUp(@RequestBody UserDetails user) {
+	public ResponseEntity<String> signUp(@RequestBody User user) {
 
 		try {
 			user.setRole("User");

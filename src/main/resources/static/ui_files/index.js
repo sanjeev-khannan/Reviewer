@@ -1,5 +1,5 @@
 
-signIn()
+signInUser()
 
 function authenticate() {
 
@@ -43,7 +43,7 @@ function authenticate() {
 
 
 // Sign In function 
-function signIn() {
+function signInUser() {
 
 	const token = localStorage.getItem('auth-token');
 
@@ -51,7 +51,7 @@ function signIn() {
 	headers.append('Authorization', 'Bearer ' + token);
 
 	if (token != null) {
-		fetch('/login', {
+		fetch('/getuserbytoken', {
 			method: 'POST',
 			headers: headers
 		})

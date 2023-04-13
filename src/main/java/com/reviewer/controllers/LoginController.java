@@ -2,16 +2,14 @@ package com.reviewer.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reviewer.pojos.UserDetails;
+import com.reviewer.dao.User;
 import com.reviewer.services.LoginService;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class LoginController {
@@ -19,25 +17,22 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public ResponseEntity<UserDetails> login(HttpSession httpsession, @RequestParam String email,
-			@RequestParam String password) {
+	@RequestMapping(path = "/getuserbytoken", method = RequestMethod.POST)
+	public ResponseEntity<User> login() {
 
 		try {
-
-			UserDetails user = loginService.authenticateUser(email, password);
-
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			if (user != null) {
 				return ResponseEntity.ok(user);
 			} else {
-				user = new UserDetails();
+				user = new User();
 				user.setEmail("Invalid Email | Password");
 				return ResponseEntity.badRequest().body(user);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			UserDetails user = new UserDetails();
+			User user = new User();
 			user.setEmail("Unexpected Error occured during Login!!");
 			return ResponseEntity.internalServerError().body(user);
 		}
@@ -45,7 +40,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(path = "/signup", method = RequestMethod.POST)
-	public ResponseEntity<String> signUp(@RequestBody UserDetails user) {
+	public ResponseEntity<String> signUp(@RequestBody User user) {
 
 		try {
 			user.setRole("User");

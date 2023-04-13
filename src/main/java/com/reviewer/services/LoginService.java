@@ -3,7 +3,7 @@ package com.reviewer.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.reviewer.pojos.UserDetails;
+import com.reviewer.dao.User;
 import com.reviewer.repositories.UserDetailsRepository;
 
 @Service
@@ -12,11 +12,11 @@ public class LoginService {
 	@Autowired
 	private UserDetailsRepository userDetailsRepository;
 
-	public UserDetails authenticateUser(String email, String password) {
+	public User authenticateUser(String email, String password) {
 
 		try {
 
-			UserDetails user = userDetailsRepository.findByEmail(email);
+			User user = userDetailsRepository.findByEmail(email);
 			if (user != null && user.getPassword().equals(password)) {
 				System.out.println("Logged In User:" + user.getFirstName());
 				return user;
@@ -29,7 +29,7 @@ public class LoginService {
 		}
 	}
 
-	public UserDetails createUser(UserDetails userdetails) {
+	public User createUser(User userdetails) {
 
 		try {
 			userDetailsRepository.save(userdetails);
@@ -41,7 +41,7 @@ public class LoginService {
 		}
 	}
 
-	public String validateUserDetails(UserDetails userDetails) {
+	public String validateUserDetails(User userDetails) {
 
 		if (userDetailsRepository.existsByEmail(userDetails.getEmail())) {
 			return "Email Already Exists";

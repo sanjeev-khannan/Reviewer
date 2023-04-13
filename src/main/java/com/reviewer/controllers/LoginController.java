@@ -2,16 +2,14 @@ package com.reviewer.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.reviewer.pojos.User;
 import com.reviewer.services.LoginService;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class LoginController {
@@ -20,13 +18,10 @@ public class LoginController {
 	private LoginService loginService;
 
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public ResponseEntity<User> login(HttpSession httpsession, @RequestParam String email,
-			@RequestParam String password) {
+	public ResponseEntity<User> login() {
 
 		try {
-
-			User user = loginService.authenticateUser(email, password);
-
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			if (user != null) {
 				return ResponseEntity.ok(user);
 			} else {

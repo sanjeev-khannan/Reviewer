@@ -12,19 +12,19 @@ import com.reviewer.repositories.UserDetailsRepository;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-    private final UserDetailsRepository userDetailsRepository;
+	private final UserDetailsRepository userDetailsRepository;
 
-    public UserDetailsServiceImpl(UserDetailsRepository userDetailsRepository) {
-        this.userDetailsRepository = userDetailsRepository;
-    }
+	public UserDetailsServiceImpl(UserDetailsRepository userDetailsRepository) {
+		this.userDetailsRepository = userDetailsRepository;
+	}
 
-    @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
-    	
-    	User user = this.userDetailsRepository.findByEmail(username);
-    	if (user==null) {
-    		throw new UsernameNotFoundException("Invalid user");
-    	}
-        return user;
-    }
+	@Override
+	public User loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		User user = this.userDetailsRepository.findByEmail(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("Invalid user");
+		}
+		return user;
+	}
 }

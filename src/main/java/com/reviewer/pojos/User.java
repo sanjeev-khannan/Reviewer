@@ -14,10 +14,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "userdetails")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
 	private static final long serialVersionUID = -9144945564609213918L;
 
@@ -64,8 +65,9 @@ public class User implements UserDetails{
 
 	@Column(name = "updated_at", nullable = false)
 	private LocalDateTime updatedAt;
-	
-	private Collection<? extends GrantedAuthority> authorities; 
+
+	@Transient
+	private Collection<? extends GrantedAuthority> authorities;
 
 	public String getEmail() {
 		return email;
@@ -165,10 +167,10 @@ public class User implements UserDetails{
 	protected void onUpdate() {
 		this.updatedAt = LocalDateTime.now();
 	}
-	
+
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
+		this.authorities = authorities;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

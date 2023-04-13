@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reviewer.pojos.User;
+import com.reviewer.dao.User;
 import com.reviewer.services.LoginService;
 
 @RestController
@@ -17,7 +17,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	@RequestMapping(path = "/getuserbytoken", method = RequestMethod.POST)
 	public ResponseEntity<User> login() {
 
 		try {

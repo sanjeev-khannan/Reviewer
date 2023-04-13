@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.reviewer.pojos.User;
+import com.reviewer.dao.User;
 import com.reviewer.repositories.UserDetailsRepository;
 
 @Service

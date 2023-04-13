@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.reviewer.dao.User;
 import com.reviewer.filters.JwtUtils;
 import com.reviewer.pojos.JwtRequest;
 import com.reviewer.pojos.JwtResponse;
-import com.reviewer.pojos.User;
 import com.reviewer.services.UserDetailsServiceImpl;
 
 @RestController

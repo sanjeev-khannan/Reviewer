@@ -1,4 +1,4 @@
-package com.reviewer.pojos;
+package com.reviewer.dao;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

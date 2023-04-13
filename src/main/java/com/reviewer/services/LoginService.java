@@ -3,7 +3,7 @@ package com.reviewer.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.reviewer.pojos.User;
+import com.reviewer.dao.User;
 import com.reviewer.repositories.UserDetailsRepository;
 
 @Service

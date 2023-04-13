@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.reviewer.pojos.User;
+import com.reviewer.dao.User;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -55,7 +55,9 @@ public class SessionAuthenticationFilter extends OncePerRequestFilter {
 
 	private boolean isPermitFree(String uri) {
 
-		if (uri.equals("/") || uri.startsWith("/ui_files") || uri.startsWith("/images")
+		if (uri.equals("/") 
+				|| uri.startsWith("/ui_files") 
+				|| uri.startsWith("/images")
 				|| uri.equals("/authenticate")) {
 			return true;
 		}

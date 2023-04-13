@@ -6,7 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.reviewer.pojos.User;
+import com.reviewer.dao.User;
 import com.reviewer.services.UserDetailsServiceImpl;
 
 import io.jsonwebtoken.Claims;

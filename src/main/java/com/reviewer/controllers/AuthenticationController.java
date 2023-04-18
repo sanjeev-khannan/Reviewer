@@ -13,7 +13,10 @@ import com.reviewer.dao.User;
 import com.reviewer.filters.JwtUtils;
 import com.reviewer.pojos.JwtRequest;
 import com.reviewer.pojos.JwtResponse;
+import com.reviewer.pojos.ReviewerError;
 import com.reviewer.services.UserDetailsServiceImpl;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 public class AuthenticationController {
@@ -24,12 +27,17 @@ public class AuthenticationController {
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
-		System.out.println("Got for authentication");
+		try{
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
+		
 		final String token = JwtUtils.generateToken(authenticationRequest.getUsername());
-
+		
 		return ResponseEntity.ok(new JwtResponse(token));
+		}
+		catch(Exception bce){
+			return ResponseEntity.badRequest().body(
+				new ReviewerError(HttpServletResponse.SC_UNAUTHORIZED, bce.getMessage()));
+		}
 	}
 
 	private void authenticate(String username, String password) throws Exception {

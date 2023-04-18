@@ -58,7 +58,8 @@ public class SessionAuthenticationFilter extends OncePerRequestFilter {
 		if (uri.equals("/") 
 				|| uri.startsWith("/ui_files") 
 				|| uri.startsWith("/images")
-				|| uri.equals("/authenticate")) {
+				|| uri.equals("/authenticate")
+				|| uri.equals("/signup")) {
 			return true;
 		}
 		return false;

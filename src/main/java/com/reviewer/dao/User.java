@@ -55,7 +55,7 @@ public class User implements UserDetails {
 	private String state;
 
 	@Column(name = "zip_code")
-	private String zipCode;
+	private Long zipCode;
 
 	@Column(name = "mobile_number", unique = true)
 	private String mobileNumber;
@@ -69,6 +69,14 @@ public class User implements UserDetails {
 	@Transient
 	private Collection<? extends GrantedAuthority> authorities;
 
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -141,11 +149,11 @@ public class User implements UserDetails {
 		this.state = state;
 	}
 
-	public String getZipCode() {
+	public Long getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(String zipCode) {
+	public void setZipCode(Long zipCode) {
 		this.zipCode = zipCode;
 	}
 

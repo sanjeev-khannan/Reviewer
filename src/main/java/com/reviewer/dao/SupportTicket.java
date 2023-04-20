@@ -16,13 +16,13 @@ public class SupportTicket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ticket_id")
-	private Long ticket_id;
+	private Long ticketId;
 	
 	@Column(name = "user_id", nullable = false)
-	private Long user_id;
+	private Long userId;
 
 	@Column(name = "assigned_rep", nullable = false)
-	private Long assigned_rep;
+	private Long assignedRep;
 
 	@Column(name = "status", nullable = false)
 	private String status;
@@ -37,27 +37,27 @@ public class SupportTicket {
 	private LocalDateTime updatedAt;
 
 	public Long getTicket_id() {
-		return ticket_id;
+		return ticketId;
 	}
 
 	public void setTicket_id(Long ticket_id) {
-		this.ticket_id = ticket_id;
+		this.ticketId = ticket_id;
 	}
 
 	public Long getUser_id() {
-		return user_id;
+		return userId;
 	}
 
 	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+		this.userId = user_id;
 	}
 
 	public Long getAssigned_rep() {
-		return assigned_rep;
+		return assignedRep;
 	}
 
 	public void setAssigned_rep(Long assigned_rep) {
-		this.assigned_rep = assigned_rep;
+		this.assignedRep = assigned_rep;
 	}
 
 	public String getStatus() {

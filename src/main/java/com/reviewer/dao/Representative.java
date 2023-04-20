@@ -16,16 +16,16 @@ public class Representative {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="rep_id")
-	private Long rep_id;
+	private Long repId;
 	
 	@Column(name = "open_ticket_count", nullable = false)
-	private int open_ticket_count;
+	private int openTicketCount;
 	
 	@Column(name = "total_ticket_count", nullable = false)
-	private int total_ticket_count;
+	private int totalTicketCount;
 	
 	@Column(name = "availability_status", nullable = false)
-	private String availability_status;
+	private String availabilityStatus;
 
 	@Column(name = "created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
@@ -34,35 +34,35 @@ public class Representative {
 	private LocalDateTime updatedAt;
 
 	public Long getRep_id() {
-		return rep_id;
+		return repId;
 	}
 
 	public void setRep_id(Long rep_id) {
-		this.rep_id = rep_id;
+		this.repId = rep_id;
 	}
 
 	public int getOpen_ticket_count() {
-		return open_ticket_count;
+		return openTicketCount;
 	}
 
 	public void setOpen_ticket_count(int open_ticket_count) {
-		this.open_ticket_count = open_ticket_count;
+		this.openTicketCount = open_ticket_count;
 	}
 
 	public int getTotal_ticket_count() {
-		return total_ticket_count;
+		return totalTicketCount;
 	}
 
 	public void setTotal_ticket_count(int total_ticket_count) {
-		this.total_ticket_count = total_ticket_count;
+		this.totalTicketCount = total_ticket_count;
 	}
 
 	public String getAvailability_status() {
-		return availability_status;
+		return availabilityStatus;
 	}
 
 	public void setAvailability_status(String availability_status) {
-		this.availability_status = availability_status;
+		this.availabilityStatus = availability_status;
 	}
 
 	public LocalDateTime getCreatedAt() {

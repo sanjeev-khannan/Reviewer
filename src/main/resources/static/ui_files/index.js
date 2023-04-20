@@ -31,7 +31,8 @@ function authenticate() {
 				location.reload();
 			}
 			else {
-				alert("Authentication Failed");
+				const data = JSON.parse(result.data)
+				alert(data['message']);
 			}
 		})
 		.catch(error => {
@@ -61,18 +62,18 @@ function signInUser() {
 			})
 			.then(result => {
 				// Handle the response data
-				const user = JSON.parse(result.data)
+				const data = JSON.parse(result.data)
 				if (result.statusCode == 200) {
 					var div_body = document.getElementById("account_dropdown_icon")
-					div_body.innerHTML = "<img width=\"20px\" src=\"./images/user.png\"/>  " + user["firstName"]
-					console.log(user)
+					div_body.innerHTML = "<img width=\"20px\" src=\"./images/user.png\"/>  " + data["firstName"]
+					console.log(data)
 
 					div_body = document.getElementById("account_dropdown")
 					div_body.innerHTML = "My Account<br>Preferences<br>Modify Account<br>View Account Details<br>Customer Support<br><br><button onclick=\"logout()\" class=\"btn btn-primary\">Sign Out</button>"
 				}
 				else {
-					alert(user["email"])
-					console.log(result.data)
+					alert(data["message"])
+					console.log(data)
 				}
 			})
 			.catch(error => {

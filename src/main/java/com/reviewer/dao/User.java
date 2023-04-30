@@ -1,6 +1,10 @@
-package com.reviewer.pojos;
+package com.reviewer.dao;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,10 +14,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "userdetails")
-public class UserDetails {
+public class User implements UserDetails {
+
+	private static final long serialVersionUID = -9144945564609213918L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +55,7 @@ public class UserDetails {
 	private String state;
 
 	@Column(name = "zip_code")
-	private String zipCode;
+	private Long zipCode;
 
 	@Column(name = "mobile_number", unique = true)
 	private String mobileNumber;
@@ -59,6 +66,17 @@ public class UserDetails {
 	@Column(name = "updated_at", nullable = false)
 	private LocalDateTime updatedAt;
 
+	@Transient
+	private Collection<? extends GrantedAuthority> authorities;
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -131,11 +149,11 @@ public class UserDetails {
 		this.state = state;
 	}
 
-	public String getZipCode() {
+	public Long getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(String zipCode) {
+	public void setZipCode(Long zipCode) {
 		this.zipCode = zipCode;
 	}
 
@@ -156,6 +174,46 @@ public class UserDetails {
 	@PreUpdate
 	protected void onUpdate() {
 		this.updatedAt = LocalDateTime.now();
+	}
+
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return this.authorities;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.getEmail();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.reviewer.dao;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +10,12 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "customersupport")
 public class SupportTicket {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ticket_id")
+	@Column(name = "ticket_id")
 	private Long ticketId;
-	
+
 	@Column(name = "user_id", nullable = false)
 	private Long userId;
 
@@ -91,5 +89,5 @@ public class SupportTicket {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 }

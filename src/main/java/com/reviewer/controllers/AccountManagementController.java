@@ -45,7 +45,7 @@ public class AccountManagementController {
 
 		try {
 			user.setRole("registered_user");
-			String res = loginService.validateUserDetails(user);
+			String res = loginService.checkExistingUser(user);
 			if (res.equals("success")) {
 				loginService.createUser(user);
 				return ResponseEntity.ok("SignUp success");
@@ -56,6 +56,25 @@ public class AccountManagementController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.internalServerError().body("Unexpected Error occured during SignUp");
+		}
+
+	}
+
+	@RequestMapping(path = "/account/saveDetails", method = RequestMethod.POST)
+	public ResponseEntity<ReviewerResponse> saveDetails(@RequestBody User user) {
+
+		try {
+			System.out.println("Entered UserDetails");
+			if (loginService.validateUserDetails(user)){
+				loginService.updateUser(user);
+				return ResponseEntity.ok(new ReviewerResponse(HttpServletResponse.SC_OK, "Update User Success"));
+			} else {
+				return ResponseEntity.badRequest().body(new ReviewerResponse(HttpServletResponse.SC_OK, "Please check details"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.internalServerError().body(new ReviewerResponse(HttpServletResponse.SC_OK, "Unexpected error while save details"));
 		}
 
 	}

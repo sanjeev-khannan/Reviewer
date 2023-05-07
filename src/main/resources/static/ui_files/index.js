@@ -66,9 +66,17 @@ function signInUser() {
 				if (result.statusCode == 200) {
 					var div_body = document.getElementById("account_dropdown_icon")
 					div_body.innerHTML = "<img width=\"20px\" src=\"./images/user.png\"/>  " + data["firstName"]
-					
+
 					div_body = document.getElementById("account_dropdown")
-					div_body.innerHTML = "My Account<br>Preferences<br>Modify Account<br>View Account Details<br>Customer Support<br><br><button onclick=\"logout()\" class=\"btn btn-primary\">Sign Out</button>"
+
+					fetch('/ui_files/account_dropdown.html', {
+						method: 'GET'
+					})
+						.then(response => response.text())
+						.then(data => { div_body.innerHTML = data; })
+						.catch(error => console.error(error));
+
+					// div_body.innerHTML = "My Account<br>Preferences<br>Modify Account<br>View Account Details<br>Customer Support<br><br><button onclick=\"logout()\" class=\"btn btn-primary\">Sign Out</button>"
 				}
 				else {
 					alert(data["message"])
@@ -242,7 +250,6 @@ async function getMyTickets() {
 		for (var i = 0; i < supportTickets.length; i++) {
 			const subject = supportTickets[i].subject;
 			const ticket_id = supportTickets[i].ticket_id;
-			console.log(supportTickets[i]);
 			subjects.push({ subject: subject, ticket: ticket_id });
 		}
 		return subjects;
@@ -340,4 +347,112 @@ function submitTicket() {
 
 function handleClick(element) {
 	console.log(element.getName());
+}
+
+function viewMyAccount() {
+	window.scrollTo(0, 0);
+	fetch('./ui_files/my_account.html', {
+		method: 'GET'
+	})
+		.then(response => response.text())
+		.then(data => {
+			// Handle the response data00
+			const page_body = document.getElementById("page_body");
+			page_body.innerHTML = data;
+			setNavLinks();
+			loadMyAccount('view')
+		})
+		.catch(error => {
+			// Handle errors
+			console.log('error', error)
+		});
+}
+
+function loadMyAccount(option) {
+	if (option == "view") {
+		fetch('./ui_files/modify_account.html', {
+			method: 'GET'
+		})
+			.then(response => response.text())
+			.then(async data => {
+				// Handle the response data
+				const page_body = document.getElementById("account_section");
+				page_body.innerHTML = data;
+				const user = await getUser();
+				document.getElementById('register_firstName').value = user.firstName;
+				document.getElementById('register_lastName').value = user.lastName;
+				document.getElementById('register_addressLine1').value = user.addressLine1;
+				document.getElementById('register_addressLine2').value = user.addressLine2;
+				document.getElementById('register_city').value = user.city;
+				document.getElementById('register_state').value = user.state;
+				document.getElementById('register_zipCode').value = user.zipCode;
+			})
+			.catch(error => {
+				// Handle errors
+				console.log('error', error)
+			});
+	}
+}
+
+function getUser() {
+	const token = localStorage.getItem('auth-token');
+
+	const headers = new Headers();
+	headers.append('Authorization', 'Bearer ' + token);
+
+	if (token != null) {
+		return fetch('/getuserbytoken', {
+			method: 'POST',
+			headers: headers
+		})
+			.then(response => {
+				const statusCode = response.status;
+				return response.text().then(data => ({ statusCode, data }));
+			})
+			.then(result => {
+				// Handle the response data
+				const data = JSON.parse(result.data);
+				return data;
+			});
+	}
+}
+
+function saveDetails() {
+
+	const token = localStorage.getItem('auth-token');
+
+	const headers = new Headers();
+	headers.append('Authorization', 'Bearer ' + token);
+	headers.append('Content-Type', 'application/json');
+
+	const form = document.querySelector("#modify_form");
+	const formData = new FormData(form);
+	console.log(formData);
+	var object = {};
+	formData.forEach(function (value, key) {
+		object[key] = value;
+	});
+	const json_string = JSON.stringify(object);
+	console.log(json_string)
+
+	fetch('/account/saveDetails', {
+		method: 'POST',
+		headers: headers,
+		body: json_string
+	})
+		.then(response => {
+			const statusCode = response.status;
+			return response.text().then(data => ({ statusCode, data }));
+		})
+		.then(result => {
+			// Access the status code and response data
+			let message = JSON.parse(result.data)['message'];
+			alert(message);
+			signInUser();
+			viewMyAccount();
+		})
+		.catch(error => {
+			// Handle errors
+			console.error('Error:', error);
+		});
 }

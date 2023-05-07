@@ -1,0 +1,41 @@
+<style>
+    .view-ticket-box {
+        border: solid white 1px;
+        border-radius: 10px;
+        /* margin: 100px 180px; */
+        /* position: relative; */
+        padding: 20px;
+        background-color: white;
+    }
+
+
+    #sub_title {
+        color: black;
+        text-align: left;
+        font-weight: bold;
+        margin-top: 10px;
+        /* height: 30px; */
+        background-color: white;
+    }
+
+    #formsubject {
+        height: 30px;
+        color: black;
+        background-color: wheat;
+        border: none;
+        padding: 5px;
+        border-radius: 5px;
+    }
+</style>
+
+
+<br><br>
+{{#each subjects}}
+<div class="view-ticket-box" onclick="loadTicket({{ticket}})">
+    <p id="sub_title">Ticket ID</p>
+    <form action="" id="formsubject">{{{ticket}}}</form>
+    <p id="sub_title">Subject</p>
+    <form action="" id="formsubject">{{{subject}}}</form>
+</div>
+<br>
+{{/each}}

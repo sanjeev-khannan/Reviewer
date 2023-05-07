@@ -1,6 +1,7 @@
 package com.reviewer.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.reviewer.dao.User;
@@ -41,7 +42,7 @@ public class LoginService {
 		}
 	}
 
-	public String validateUserDetails(User userDetails) {
+	public String checkExistingUser(User userDetails) {
 
 		if (userDetailsRepository.existsByEmail(userDetails.getEmail())) {
 			return "Email Already Exists";
@@ -50,6 +51,31 @@ public class LoginService {
 		}
 
 		return "success";
+	}
+
+	public boolean validateUserDetails(User user){
+		return true;
+	}
+
+	public void updateUser(User user) {
+		try {
+			User userDetails = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			User userFromDB = userDetailsRepository.findByEmail(userDetails.getEmail());
+
+			userFromDB.setFirstName(user.getFirstName());
+			userFromDB.setLastName(user.getLastName());
+			userFromDB.setAddressLine1(user.getAddressLine1());
+			userFromDB.setAddressLine2(user.getAddressLine2());
+			userFromDB.setCity(user.getCity());
+			userFromDB.setState(user.getState());
+			userFromDB.setZipCode(user.getZipCode());
+
+			userDetailsRepository.save(userFromDB);
+			System.out.println("LoginService: SaveDetails - success");
+		} catch (Exception e) {
+			System.out.println("LoginService: Exception while SaveDetails");
+			throw (e);
+		}
 	}
 
 }

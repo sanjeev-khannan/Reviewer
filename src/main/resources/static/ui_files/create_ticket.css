@@ -1,0 +1,45 @@
+
+
+.box {
+    border: solid white 1px;
+    height: auto;
+    border-radius: 10px;
+    margin: 50px 180px;
+    position: relative;
+    padding: 10px;
+    background-color: white;
+}
+
+#ticket-form{
+    padding:10px;
+}
+
+.form-heading{
+    color: black;
+    font-weight: bold;
+    text-align: left;
+}
+
+#formsubject,
+#formmessage {
+    margin-top: 10px;
+}
+
+.input-box{
+    width: 99%;
+    padding: 5px;
+    background-color: wheat;
+    border: none;
+    border-radius: 5px;
+}
+
+
+.submit-btn {
+    background-color: wheat;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}

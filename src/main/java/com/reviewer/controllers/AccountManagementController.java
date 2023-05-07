@@ -6,14 +6,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reviewer.dao.SupportTicket;
 import com.reviewer.dao.User;
-import com.reviewer.pojos.ReviewerError;
+import com.reviewer.pojos.ReviewerResponse;
 import com.reviewer.services.LoginService;
-import com.reviewer.services.SupportTicketServiceImpl;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -22,10 +19,6 @@ public class AccountManagementController {
 
 	@Autowired
 	private LoginService loginService;
-	
-
-	@Autowired
-	private SupportTicketServiceImpl supportTicketService;
 
 	@RequestMapping(path = "/getuserbytoken", method = RequestMethod.POST)
 	public ResponseEntity<?> getUser() {
@@ -36,42 +29,13 @@ public class AccountManagementController {
 				return ResponseEntity.ok(user);
 			} else {
 				return ResponseEntity.badRequest().body(
-					new ReviewerError(HttpServletResponse.SC_BAD_REQUEST, "UNAUTHORIZED_ACCESS"));
+					new ReviewerResponse(HttpServletResponse.SC_BAD_REQUEST, "UNAUTHORIZED_ACCESS"));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.internalServerError().body(
-				new ReviewerError(HttpServletResponse.SC_BAD_REQUEST, "Unexpected Error occured during Login!!"));
-		}
-
-	}
-	
-	@RequestMapping(path = "/getticketbyid", method = RequestMethod.POST)
-	public ResponseEntity<?> getTicket(@RequestParam Long ticket_id) {
-
-		try {
-			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			
-			SupportTicket supportTicket = supportTicketService.loadTicketByTicketId(ticket_id);
-			if (supportTicket != null && supportTicket.getUser_id().equals(user.getUserId())) {
-				return ResponseEntity.ok(supportTicket);
-			} 
-			else if(supportTicket == null){
-				supportTicket = new SupportTicket();
-				supportTicket.setStatus("INVALID_TICKET_ID");
-				return ResponseEntity.badRequest().body(supportTicket);
-			}
-			else {
-				return ResponseEntity.badRequest().body(new ReviewerError(HttpServletResponse.SC_UNAUTHORIZED, 
-				"UNAUTHORIZED_TICKET_ACCESS"));
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			SupportTicket supportTicket = new SupportTicket();
-			supportTicket.setStatus("Unexpected Error occured while getting Ticket!");
-			return ResponseEntity.internalServerError().body(supportTicket);
+				new ReviewerResponse(HttpServletResponse.SC_BAD_REQUEST, "Unexpected Error occured during Login!!"));
 		}
 
 	}
@@ -81,7 +45,7 @@ public class AccountManagementController {
 
 		try {
 			user.setRole("registered_user");
-			String res = loginService.validateUserDetails(user);
+			String res = loginService.checkExistingUser(user);
 			if (res.equals("success")) {
 				loginService.createUser(user);
 				return ResponseEntity.ok("SignUp success");
@@ -92,6 +56,25 @@ public class AccountManagementController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.internalServerError().body("Unexpected Error occured during SignUp");
+		}
+
+	}
+
+	@RequestMapping(path = "/account/saveDetails", method = RequestMethod.POST)
+	public ResponseEntity<ReviewerResponse> saveDetails(@RequestBody User user) {
+
+		try {
+			System.out.println("Entered UserDetails");
+			if (loginService.validateUserDetails(user)){
+				loginService.updateUser(user);
+				return ResponseEntity.ok(new ReviewerResponse(HttpServletResponse.SC_OK, "Update User Success"));
+			} else {
+				return ResponseEntity.badRequest().body(new ReviewerResponse(HttpServletResponse.SC_OK, "Please check details"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.internalServerError().body(new ReviewerResponse(HttpServletResponse.SC_OK, "Unexpected error while save details"));
 		}
 
 	}

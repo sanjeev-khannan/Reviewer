@@ -1,0 +1,64 @@
+<style>
+
+.box {
+    border: solid white 1px;
+    border-radius: 10px;
+    margin: 80px 180px;
+    position: relative;
+    padding: 20px;
+    background-color: white;
+}
+
+#title {
+    background-color: white;
+    color: black;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+#sub_title {
+    color: black;
+    text-align: left;
+    font-weight: bold;
+    /* height: 30px; */
+    background-color: white;
+}
+
+
+
+#formsubject,
+#formrepre,
+#formmessage,
+#formcomments{
+    height: 30px;
+    color: black;
+    margin-top: 5px;
+    background-color: wheat;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+</style>
+
+<div class="box">
+    <p id="sub_title">Ticket ID</p>
+    <form action="" id="formsubject">{{ticket_id}}</form>
+    <br>
+    <p id="sub_title">Subject</p>
+    <form action="" id="formsubject">{{subject}}</form>
+    <br>
+    <p id="sub_title">Representative ID</p>
+    <form action="" id="formrepre">{{assigned_rep}}</form>
+    <br>
+    <p id="sub_title">Message</p>
+    <form action="" id="formmessage">{{message}}</form>
+    <br>
+    <p id="sub_title" class="sub_title">Comments</p>
+    <form action="" id="formcomments">{{comments}}</form>
+</div>

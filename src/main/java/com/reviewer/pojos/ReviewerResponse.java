@@ -1,12 +1,12 @@
 package com.reviewer.pojos;
 
-public class ReviewerError {
+public class ReviewerResponse {
     
     private int statusCode;
 
     private String message;
 
-    public ReviewerError(int statusCode, String message) {
+    public ReviewerResponse(int statusCode, String message) {
         this.statusCode = statusCode;
         this.message = message;
     }

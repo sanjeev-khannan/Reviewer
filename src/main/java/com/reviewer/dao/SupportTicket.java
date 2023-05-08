@@ -1,7 +1,5 @@
 package com.reviewer.dao;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,14 +10,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "customersupport")
 public class SupportTicket {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ticket_id")
+	@Column(name = "ticket_id")
 	private Long ticketId;
-	
+
 	@Column(name = "user_id", nullable = false)
 	private Long userId;
+
+	@Column(name = "subject", nullable = false)
+	private String subject;
 
 	@Column(name = "assigned_rep", nullable = false)
 	private Long assignedRep;
@@ -30,11 +31,8 @@ public class SupportTicket {
 	@Column(name = "comments", nullable = false)
 	private String comments;
 
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private LocalDateTime createdAt;
-
-	@Column(name = "updated_at", nullable = false)
-	private LocalDateTime updatedAt;
+	@Column(name = "message", nullable = false)
+	private String message;
 
 	public Long getTicket_id() {
 		return ticketId;
@@ -76,21 +74,20 @@ public class SupportTicket {
 		this.comments = comments;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setMessage(String message) {
+		this.message = message;
 	}
-	
-	
+
 }

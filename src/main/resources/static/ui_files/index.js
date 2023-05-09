@@ -138,6 +138,7 @@ function openRegister() {
 			// Handle the response data
 			const page_body = document.getElementById("page_body");
 			page_body.innerHTML = data;
+			loadSignUpJS();
 		})
 		.catch(error => {
 			// Handle errors
@@ -392,6 +393,22 @@ function loadMyAccount(option) {
 				console.log('error', error)
 			});
 	}
+
+	else if (option == "delete") {
+		fetch('./ui_files/delete_account.html', {
+			method: 'GET'
+		})
+			.then(response => response.text())
+			.then(async data => {
+				// Handle the response data
+				const page_body = document.getElementById("account_section");
+				page_body.innerHTML = data;
+			})
+			.catch(error => {
+				// Handle errors
+				console.log('error', error)
+			});
+	}
 }
 
 function getUser() {
@@ -454,5 +471,114 @@ function saveDetails() {
 		.catch(error => {
 			// Handle errors
 			console.error('Error:', error);
+		});
+}
+
+function loadSignUpJS() {
+	const passwordInput = document.getElementById("register_password");
+	const passwordError = document.getElementById("password-error");
+
+	function validatePassword() {
+		const password = passwordInput.value;
+		let errorMessage = "";
+
+		if (!/(?=.*[a-z])/.test(password)) {
+			errorMessage += "At lease one lower case letter. <br>";
+		}
+		if (!/(?=.*[A-Z])/.test(password)) {
+			errorMessage += "At lease one upper case letter. <br>";
+		}
+		if (!/(?=.[!@#$%^&()_+])/.test(password)) {
+			errorMessage += "At lease one special letter. <br>";
+		}
+		if (!/(?=.{6,})/.test(password)) {
+			errorMessage += "The length must be at least 6 characters. <br>";
+		}
+
+		if (errorMessage) {
+			passwordError.innerHTML = errorMessage;
+			passwordError.style.display = "block";
+		} else {
+			passwordError.style.display = "none";
+		}
+	};
+	passwordInput.addEventListener("input", validatePassword);
+
+	const emailInput = document.getElementById("register_email");
+	const emailError = document.getElementById("email-error");
+
+	function validateEmail() {
+		const email = emailInput.value;
+		let errorMessage = "";
+
+		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+			errorMessage += "Please enter a valid email address";
+			emailError.innerHTML = errorMessage;
+			emailError.style.display = "block";
+		} else {
+			emailError.style.display = "none";
+		}
+		
+	}
+	emailInput.addEventListener("input", validateEmail);
+
+	const mobileNumberInput = document.getElementById("register_mobileNumber");
+	const mobileNumberError = document.getElementById("mobileNumber-error");
+
+	function validateMobileNumber() {
+		const mobileNumber = mobileNumberInput.value;
+		let errorMessage = "";
+
+		if (!/^\d{10}$/.test(mobileNumber)) {
+			errorMessage += "Please enter a valid Mobile Number";
+			mobileNumberError.innerHTML = errorMessage;
+			mobileNumberError.style.display = "block";
+		} else {
+			mobileNumberError.style.display = "none";
+		}
+		
+	}
+	mobileNumberInput.addEventListener("input", validateMobileNumber);
+
+}
+
+function updateButton() {
+	const checkbox = document.getElementById('delete_consent');
+	const button = document.getElementById('delete_button');
+	button.disabled = !checkbox.checked;
+}
+
+function deleteAccount() {
+
+	const token = localStorage.getItem('auth-token');
+
+	const headers = new Headers();
+	headers.append('Authorization', 'Bearer ' + token);
+	headers.append('Content-Type', 'application/json');
+
+	fetch('/account/deleteaccount', {
+		method: 'DELETE',
+		headers: headers
+	})
+		.then(response => {
+			const statusCode = response.status;
+			return response.text().then(data => ({ statusCode, data }));
+		})
+		.then(result => {
+			// Handle the response data
+			const data = JSON.parse(result.data)
+			if (result.statusCode == 200) {
+				alert(data['message'])
+				localStorage.removeItem('auth-token');
+				location.reload();
+			}
+			else {
+				alert(data["message"])
+				console.log(data)
+			}
+		})
+		.catch(error => {
+			// Handle errors
+			console.log('error', error)
 		});
 }

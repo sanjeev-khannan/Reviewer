@@ -78,4 +78,8 @@ public class LoginService {
 		}
 	}
 
+    public void deleteAccount(User user) {
+		userDetailsRepository.delete(user);
+    }
+
 }

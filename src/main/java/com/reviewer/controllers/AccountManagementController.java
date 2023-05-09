@@ -78,4 +78,25 @@ public class AccountManagementController {
 		}
 
 	}
+
+	@RequestMapping(path = "/account/deleteaccount", method = RequestMethod.DELETE)
+	public ResponseEntity<ReviewerResponse> deleteAccount() {
+
+		try {
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (user != null) {
+				loginService.deleteAccount(user);
+				return ResponseEntity.ok(new ReviewerResponse(HttpServletResponse.SC_OK, "ACCOUNT DELETED"));
+			} else {
+				return ResponseEntity.badRequest().body(
+					new ReviewerResponse(HttpServletResponse.SC_BAD_REQUEST, "UNAUTHORIZED_ACCESS"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.internalServerError().body(
+				new ReviewerResponse(HttpServletResponse.SC_BAD_REQUEST, "Unexpected Error occured account deletion!!"));
+		}
+
+	}
 }

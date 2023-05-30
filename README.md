@@ -1,4 +1,4 @@
-# Reviewer
+# Reviewer (still on development stage)
 This application is a travel guide platform that helps users find the best places to travel based on their budget. It includes a search engine for discovering restaurants, hotels, and places, a merchant database with reviews and ratings, a booking system, and an AI-based recommendation system.
 
 # Local Deployment guidelines

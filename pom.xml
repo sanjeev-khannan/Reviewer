@@ -75,11 +75,18 @@
 						<archive>
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>lib/</classpathPrefix>
-								<mainClass>com.mypackage.MyClass</mainClass>
+								<mainClass>com.reviewer.ReviewerApplicationBoot</mainClass>
+								<layout>JAR</layout>
 							</manifest>
 						</archive>
 					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>

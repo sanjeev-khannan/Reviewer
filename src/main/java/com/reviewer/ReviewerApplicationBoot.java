@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ReviewerApplicationBoot {
 
     public static void main(String[] args) {
-        SpringApplication.run(ReviewerApplicationBoot.class, args);
+        SpringApplication.run(ReviewerApplicationBoot.class, new String[] {});
+        
     }
 
 }

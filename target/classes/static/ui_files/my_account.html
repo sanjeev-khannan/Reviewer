@@ -1,0 +1,27 @@
+<style>
+    #account_section {
+        height: 700px;
+        overflow: scroll;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+            <h3 style="text-align: center;">My Account</h3>
+            <div class="vertical-menu">
+                <a href="#" onclick="loadMyAccount('view')" id="view_account_option" class="nav-link active">View & Modify Account</a>
+                <a href="#" onclick="loadMyAccount('delete')" id="delete_account_option" class="nav-link">Delete Account</a>
+                <a href="#" onclick="viewCustomerSupport()" class="nav-link">Customer Support</a>
+            </div>
+        </div>
+
+        <div class="col-lg-1" style="width: 10px; height: max-content;">
+            <div class="category-block"></div>
+        </div>
+
+        <div class="col-lg-8" id="account_section">
+
+        </div>
+    </div>
+</div>

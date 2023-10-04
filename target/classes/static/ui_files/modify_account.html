@@ -1,0 +1,44 @@
+<style>
+	.signup-form{
+		background-color: white; 
+		width: 80%; 
+		margin: 0 auto; 
+		padding: 10px; 
+		border-radius: 2%;
+	}
+</style>
+<div class="signup-form">
+	<h1 style="text-align: center;">Modify Account</h1>
+	<hr>
+	<form id="modify_form">
+		<div class="form-group">
+			<label for="firstName">First Name:</label> <input type="text" class="form-control" id="register_firstName"
+				placeholder="Enter first name" name="firstName" required>
+		</div>
+		<div class="form-group">
+			<label for="lastName">Last Name:</label> <input type="text" class="form-control" id="register_lastName"
+				placeholder="Enter last name" name="lastName" required>
+		</div>
+		<div class="form-group">
+			<label for="addressLine1">Address Line 1:</label> <input type="text" class="form-control"
+				id="register_addressLine1" placeholder="Enter address line 1" name="addressLine1" required>
+		</div>
+		<div class="form-group">
+			<label for="addressLine2">Address Line 2:</label> <input type="text" class="form-control"
+				id="register_addressLine2" placeholder="Enter address line 2" name="addressLine2">
+		</div>
+		<div class="form-group">
+			<label for="city">City:</label> <input type="text" class="form-control" id="register_city"
+				placeholder="Enter city" name="city" required>
+		</div>
+		<div class="form-group">
+			<label for="state">State:</label> <input type="text" class="form-control" id="register_state"
+				placeholder="Enter state" name="state" required>
+		</div>
+		<div class="form-group">
+			<label for="zipCode">Zip Code:</label> <input type="text" class="form-control" id="register_zipCode"
+				placeholder="Enter zip code" name="zipCode" required>
+		</div>
+		<button type="button" class="btn btn-primary btn-block" onclick="saveDetails()">Save</button>
+	</form>
+</div>

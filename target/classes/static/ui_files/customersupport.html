@@ -1,0 +1,27 @@
+<style>
+    #ticket_section {
+        height: 700px;
+        overflow: scroll;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">
+            <h3 style="text-align: center;">Customer Support</h3>
+            <div class="vertical-menu">
+                <a href="#" onclick="loadCustomerSupport('new')" class="nav-link active">New Ticket</a>
+                <a href="#" onclick="loadCustomerSupport('myt')" class="nav-link">My Tickets</a>
+            </div>
+
+        </div>
+
+        <div class="col-lg-1" style="width: 10px; height: max-content;">
+            <div class="category-block"></div>
+        </div>
+
+        <div class="col-lg-8" id="ticket_section">
+
+        </div>
+    </div>
+</div>

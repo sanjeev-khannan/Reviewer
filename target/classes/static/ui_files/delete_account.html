@@ -1,0 +1,15 @@
+<style>
+    .delete_section {
+        margin: 40px;
+        background-color: white;
+        border-radius: 10px;
+    }
+</style>
+<div class="delete_section">
+    <div style="padding: 20px;">
+        <input type="checkbox" name="delete_consent" onchange="updateButton()" id="delete_consent">
+        <label for="delete_consent">I accept that the process is irreversible and will delete the account permanently</label>
+        <br><br>
+		<button type="button" id="delete_button" class="btn btn-primary" onclick="deleteAccount();" disabled>Delete Account</button>
+    </div>
+</div>

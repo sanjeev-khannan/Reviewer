@@ -135,16 +135,16 @@
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 							  <div class="dropdown-item">
-								<a href="#">Action</a>
+								<a href="#">★</a> 
 							  </div>
 							  <div class="dropdown-item">
-								<a href="#">Another action</a>
+								<a href="#">★★</a>
 							  </div>
 							  <div class="dropdown-item">
-								<a href="#">Something else here</a>
+								<a href="#">★★★</a>
 							  </div>
 							</div>
-						  </div>
+						  </div>						  
 						  
 
 						  <div class="dropdown">
@@ -153,13 +153,16 @@
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 							  <div class="dropdown-item">
-								<a href="#">Action</a>
+								<a href="#">Under $20</a>
 							  </div>
 							  <div class="dropdown-item">
-								<a href="#">Another action</a>
+								<a href="#">Between $20 - $50</a>
 							  </div>
 							  <div class="dropdown-item">
-								<a href="#">Something else here</a>
+								<a href="#">Up to $100</a>
+							  </div>
+							  <div class="dropdown-item">
+								<a href="#">more than $100</a>
 							  </div>
 							</div>
 						  </div>
@@ -171,13 +174,13 @@
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 							  <div class="dropdown-item">
-								<a href="#">Action</a>
+								<a href="#">Less than 1 mile</a>
 							  </div>
 							  <div class="dropdown-item">
-								<a href="#">Another action</a>
+								<a href="#">Less than 5 miles</a>
 							  </div>
 							  <div class="dropdown-item">
-								<a href="#">Something else here</a>
+								<a href="#">Less than 10 miles</a>
 							  </div>
 							</div>
 						  </div>
@@ -187,17 +190,24 @@
 							  Sort By <i class="fas fa-chevron-down"></i>
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							  <div class="dropdown-item">
-								<a href="#">Action</a>
+							  <div class="dropdown-item" onclick="toggleCheck(this)">
+								<a href="#"><i class="far fa-check-circle"></i> Relevance</a>
 							  </div>
-							  <div class="dropdown-item">
-								<a href="#">Another action</a>
+							  <div class="dropdown-item" onclick="toggleCheck(this)">
+								<a href="#"><i class="far fa-check-circle"></i> Price: Low to High</a>
 							  </div>
-							  <div class="dropdown-item">
-								<a href="#">Something else here</a>
+							  <div class="dropdown-item" onclick="toggleCheck(this)">
+								<a href="#"><i class="far fa-check-circle"></i> Price: High to Low</a>
+							  </div>
+							  <div class="dropdown-item" onclick="toggleCheck(this)">
+								<a href="#"><i class="far fa-check-circle"></i> Distance</a>
+							  </div>
+							  <div class="dropdown-item" onclick="toggleCheck(this)">
+								<a href="#"><i class="far fa-check-circle"></i> Rating</a>
 							  </div>
 							</div>
 						  </div>
+						  
 						  
 					  </div>
 					  
@@ -392,5 +402,17 @@
 
 
 </body>
+<script>
+	function toggleCheck(element) {
+	  const icon = element.querySelector('i');
+	  if (icon.classList.contains('far')) {
+		icon.classList.remove('far');
+		icon.classList.add('fas');
+	  } else {
+		icon.classList.remove('fas');
+		icon.classList.add('far');
+	  }
+	}
+	</script>
 
 </html>

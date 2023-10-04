@@ -13,6 +13,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 	<script src="./ui_files/index.js"></script>
+	<script src="./ui_files/search.js"></script>
 
 	<!-- import css style  -->
 	<link rel="stylesheet" href="./ui_files/style.css">
@@ -34,9 +35,9 @@
 				<!-- Search button section -->
 				<form class="navbar-form navbar-left">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search Here">
+						<input type="text" class="form-control" id="search_box" placeholder="Search Here">
 						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit">
+							<button class="btn btn-default" type="button" onclick="fillSearchResults()">
 								<i class="glyphicon glyphicon-search"></i>
 							</button>
 						</div>
@@ -91,14 +92,13 @@
 				<div class="col-lg-2">
 					<h3 style="text-align: center;">Categories</h3>
 					<div class="vertical-menu">
-						<a class="nav-link active" href="#" >Restaurants</a> 
-						<a class="nav-link" href="#">Museum</a>
-						<a class="nav-link" href="#">Scenic/tickets</a> 
-						<a class="nav-link" href="#">Shopping</a> 
-						<a class="nav-link" href="#">Hotel</a> 
-						<a class="nav-link" href="#">Flight</a> 
+						<a class="nav-link active" href="#" >All</a>
+						<a class="nav-link" href="#">Restaurants</a> 
+						<a class="nav-link" href="#">Hotels</a> 
+						<a class="nav-link" href="#">Events</a> 
 						<a class="nav-link" href="#">Bar</a> 
-						<a class="nav-link" href="#">Visit</a>
+						<a class="nav-link" href="#">Cinema</a>
+						<a class="nav-link" href="#">Activities</a> 
 					</div>
 
 				</div>
@@ -108,131 +108,7 @@
 				</div>
 
 
-				<div class="col-lg-8">
-					<div class="row">
-
-						<div class="col-lg-4">
-							<div class="card">
-								<div class="card-in" onclick="window.open('https://antoyabbq.com/menu','_self')">
-									<img class="image" src="./images/korean.jpg">
-									<h4>
-										<b>Korean Dishes</b>
-									</h4>
-									<p>
-										<b>Rating 4.8</b>
-									</p>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-									<h3>
-										<b>$25</b>
-									</h3>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-lg-4">
-							<div class="card">
-								<div class="card-in">
-									<img class="image" src="./images/noodles.jpg">
-									<h4>
-										<b>Noodles</b>
-									</h4>
-									<p>
-										<b>Rating 4.7</b>
-									</p>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-									<h3>
-										<b>$45</b>
-									</h3>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-lg-4">
-							<div class="card">
-								<div class="card-in">
-									<img class="image" src="./images/steak.jpg">
-									<h4>
-										<b>Steak</b>
-									</h4>
-									<p>
-										<b>Rating 4.0</b>
-									</p>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-									<h3>
-										<b>$35</b>
-									</h3>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4">
-							<div class="card">
-								<div class="card-in">
-									<img class="image" src="./images/sphagetti.jpg">
-									<h4>
-										<b>Italian Dishes</b>
-									</h4>
-									<p>
-										<b>Rating 4.1</b>
-									</p>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<h3>
-										<b>$85</b>
-									</h3>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4">
-							<div class="card">
-								<div class="card-in">
-									<img class="image" src="./images/japanese.jpg">
-									<h4>
-										<b>Japanese Dishes</b>
-									</h4>
-									<p>
-										<b>Rating 4.3</b>
-									</p>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>
-									<h3>
-										<b>$75</b>
-									</h3>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4">
-							<div class="card">
-								<div class="card-in">
-									<img class="image" src="./images/chinese.jpg">
-									<h4>
-										<b>Chinese Dishes</b>
-									</h4>
-									<p>
-										<b>Rating 4.4</b>
-									</p>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-									<span class="fa fa-star"></span>
-									<h3>
-										<b>$15</b>
-									</h3>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div id="search_results_section">
 				</div>
 			</div>
 		</div>

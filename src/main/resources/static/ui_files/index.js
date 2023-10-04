@@ -247,12 +247,14 @@ async function getMyTickets() {
 		// Access the status code and response data
 		let subjects = [];
 		const supportTickets = JSON.parse(result_1.data);
+		console.log(supportTickets);
 		var htmlBody = "";
 		for (var i = 0; i < supportTickets.length; i++) {
 			const subject = supportTickets[i].subject;
 			const ticket_id = supportTickets[i].ticket_id;
 			subjects.push({ subject: subject, ticket: ticket_id });
 		}
+		console.log(subjects);
 		return subjects;
 	} catch (error) {
 		// Handle errors

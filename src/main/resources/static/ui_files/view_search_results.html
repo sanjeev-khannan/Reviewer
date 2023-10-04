@@ -1,0 +1,39 @@
+
+<style>
+
+
+.item {
+    display: inline-block; /* Display items horizontally */
+    margin-right: 10px; /* Add some space between items (adjust as needed) */
+    /* border: 1px solid #ccc; Add borders to items for visual separation */
+    padding: 10px; /* Add padding to items for spacing and styling */
+}
+
+</style>
+
+<div class="item-container">
+    {{#each venues}}
+    <div class="item">
+        <div class="card">
+            <div class="card-in" onclick="window.open('https://antoyabbq.com/menu','_self')">
+                <img class="image" src="{{{imageUrl}}}">
+                <h4>
+                    <b>{{{venueName}}}</b>
+                </h4>
+                <p>
+                    <b>{{{venueType}}}</b>
+                </p>
+                <div>
+                    {{{printItems rating}}}
+                <!-- <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span> -->
+                </div>
+                <h3>
+                <b>${{{minPrice}}} - ${{{maxPrice}}}</b>
+                </h3>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

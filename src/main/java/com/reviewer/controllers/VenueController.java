@@ -21,6 +21,6 @@ public class VenueController {
 	@RequestMapping(value = "/venue", method = RequestMethod.GET)
     public ResponseEntity<List<Venue>> searchVenue(@RequestParam String search_phrase){
         // venueService.getAllVenues();
-		return ResponseEntity.ok(venueService.findVenueWithCriteria('%'+search_phrase+'%'));
+		return ResponseEntity.ok(venueService.findVenueWithCriteria('%'+search_phrase.toLowerCase()+'%'));
     }
 }

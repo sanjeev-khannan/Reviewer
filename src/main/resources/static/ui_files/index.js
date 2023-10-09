@@ -520,7 +520,7 @@ function loadSignUpJS() {
 		} else {
 			emailError.style.display = "none";
 		}
-		
+
 	}
 	emailInput.addEventListener("input", validateEmail);
 
@@ -538,7 +538,7 @@ function loadSignUpJS() {
 		} else {
 			mobileNumberError.style.display = "none";
 		}
-		
+
 	}
 	mobileNumberInput.addEventListener("input", validateMobileNumber);
 
@@ -583,4 +583,83 @@ function deleteAccount() {
 			// Handle errors
 			console.log('error', error)
 		});
+}
+
+
+function selectPrice(priceValue) {
+	// Set the selected price value in the hidden form field
+	for (var i = 1; i < 5; i++) {
+		const clsList = document.getElementById("price_o" + i).classList;
+		clsList.remove('fas');
+		clsList.add('far');
+	}
+
+	previousValue = document.getElementById("selected_price").value;
+	if (previousValue != priceValue) {
+		const clsList = document.getElementById("price_" + priceValue).classList;
+		clsList.remove('far');
+		clsList.add('fas');
+		document.getElementById("selected_price").value = priceValue;
+	}
+	else {
+		document.getElementById("selected_price").value = "";
+	}
+	fillSearchResults();
+}
+function selectSort(sortValue) {
+	// Set the selected price value in the hidden form field
+	for (var i = 1; i < 5; i++) {
+		const clsList = document.getElementById("sort_o" + i).classList;
+		clsList.remove('fas');
+		clsList.add('far');
+	}
+	previousValue = document.getElementById("selected_sorting").value;
+	if (previousValue != sortValue) {
+		const clsList = document.getElementById("sort_" + sortValue).classList;
+		clsList.remove('far');
+		clsList.add('fas');
+		document.getElementById("selected_sorting").value = sortValue;
+	}
+	else {
+		document.getElementById("selected_sorting").value = "";
+	}
+
+	fillSearchResults();
+}
+
+function selectRating(ratingValue) {
+	// Set the selected price value in the hidden form field
+	for (var i = 1; i < 6; i++) {
+		document.getElementById("rating_o" + i).style="";
+	}
+	previousValue = document.getElementById("selected_rating").value;
+	if (previousValue != ratingValue) {
+		document.getElementById("rating_o" + ratingValue).style="color:midnightblue";
+		document.getElementById("selected_rating").value = ratingValue;
+	}
+	else {
+		document.getElementById("selected_rating").value = "";
+	}
+	fillSearchResults();
+}
+
+function resetFilters() {
+
+	for (var i = 1; i < 5; i++) {
+		const clsList = document.getElementById("sort_o" + i).classList;
+		clsList.remove('fas');
+		clsList.add('far');
+	}
+
+	for (var i = 1; i < 5; i++) {
+		const clsList = document.getElementById("price_o" + i).classList;
+		clsList.remove('fas');
+		clsList.add('far');
+	}
+
+	document.getElementById("selected_sorting").value = "";
+	document.getElementById("selected_price").value = "";
+	document.getElementById("selected_rating").value = "";
+
+	fillSearchResults();
 }

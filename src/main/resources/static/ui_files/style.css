@@ -303,3 +303,25 @@ p {
 		display: block;
 	}
 }
+
+.horizontal-dropdowns {
+	display: flex;
+}
+
+.dropdown {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+/* Set the border-radius for dropdown buttons */
+.dropdown button.dropdown-toggle {
+	border-radius: 20px;
+	/* Adjust the value as needed */
+}
+
+/* Set the border-radius for dropdown menus */
+.dropdown-menu {
+	border-radius: 20px;
+	width: max-content;
+	/* Adjust the value as needed */
+}

@@ -35,7 +35,8 @@
 				<!-- Search button section -->
 				<form class="navbar-form navbar-left">
 					<div class="input-group">
-						<input type="text" style="font-size: 15px;" class="form-control" id="search_box" placeholder="Search Here">
+						<input type="text" style="font-size: 15px;" class="form-control" id="search_box"
+							placeholder="Search Here">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="button" onclick="fillSearchResults()">
 								<i class="glyphicon glyphicon-search"></i>
@@ -92,13 +93,13 @@
 				<div class="col-lg-2">
 					<h3 style="text-align: center;">Categories</h3>
 					<div class="vertical-menu">
-						<a class="nav-link active" href="#" >All</a>
-						<a class="nav-link" href="#">Restaurants</a> 
-						<a class="nav-link" href="#">Hotels</a> 
-						<a class="nav-link" href="#">Events</a> 
-						<a class="nav-link" href="#">Bar</a> 
+						<a class="nav-link active" href="#">All</a>
+						<a class="nav-link" href="#">Restaurants</a>
+						<a class="nav-link" href="#">Hotels</a>
+						<a class="nav-link" href="#">Events</a>
+						<a class="nav-link" href="#">Bar</a>
 						<a class="nav-link" href="#">Cinema</a>
-						<a class="nav-link" href="#">Activities</a> 
+						<a class="nav-link" href="#">Activities</a>
 					</div>
 
 				</div>
@@ -107,6 +108,91 @@
 					<div class="category-block"></div>
 				</div>
 
+				<div class="horizontal-dropdowns">
+					<p style="font-weight:bold;font-size: 22px;">Filters : &nbsp;&nbsp;</p>
+				
+					<input type="hidden" id="selected_rating" value="" />
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Rating <i class="fas fa-chevron-down"></i>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<div class="dropdown-item">
+								<a onclick="selectRating('1')" id="rating_o1">★</a>
+							</div>
+							<div class="dropdown-item">
+								<a onclick="selectRating('2')" id="rating_o2">★★</a>
+							</div>
+							<div class="dropdown-item">
+								<a onclick="selectRating('3')" id="rating_o3">★★★</a>
+							</div>
+							<div class="dropdown-item">
+								<a onclick="selectRating('4')" id="rating_o4">★★★★</a>
+							</div>
+							<div class="dropdown-item">
+								<a onclick="selectRating('5')" id="rating_o5">★★★★★</a>
+							</div>
+						</div>
+					</div>
+					
+					<input type="hidden" id="selected_price" value="" />
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Price <i class="fas fa-chevron-down"></i>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<div class="dropdown-item">
+								<a onclick="selectPrice('o1')">
+									<i id="price_o1" class="far fa-check-circle"></i> Less than $20</a>
+							</div>
+							<div class="dropdown-item">
+								<a onclick="selectPrice('o2')">
+									<i id="price_o2" class="far fa-check-circle"></i> Less than $100</a>
+							</div>
+							<div class="dropdown-item">
+								<a onclick="selectPrice('o3')">
+									<i id="price_o3" class="far fa-check-circle"></i> Between $20 - $80</a>
+							</div>
+							<div class="dropdown-item">
+								<a onclick="selectPrice('o4')">
+									<i id="price_o4" class="far fa-check-circle"></i> More than $100</a>
+							</div>
+						</div>
+					</div>
+
+					
+					<input type="hidden" id="selected_sorting" value="" />
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Sort By <i class="fas fa-chevron-down"></i>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<!-- <div class="dropdown-item" onclick="toggleCheck(this)">
+								<a href="#"><i class="far fa-check-circle"></i> Relevance</a>
+							</div> -->
+							<div class="dropdown-item" onclick="selectSort('o1')">
+								<a><i id="sort_o1" class="far fa-check-circle"></i> Price: Low to High</a>
+							</div>
+							<div class="dropdown-item" onclick="selectSort('o2')">
+								<a><i id="sort_o2" class="far fa-check-circle"></i> Price: High to Low</a>
+							</div>
+							<div class="dropdown-item" onclick="selectSort('o3')">
+								<a><i id="sort_o3" class="far fa-check-circle"></i> Rating: Low to High</a>
+							</div>
+							
+							<div class="dropdown-item" onclick="selectSort('o4')">
+								<a><i id="sort_o4" class="far fa-check-circle"></i> Rating: High to Low</a>
+							</div>
+						</div>
+					</div>
+
+					
+					<button class="btn btn-primary" type="button" style="height:fit-content;" onclick="resetFilters()" >Reset</button>
+
+				</div>
 
 				<div id="search_results_section">
 				</div>

@@ -10,5 +10,4 @@ public class ReviewerApplicationBoot {
         Thread springBootThread = new Thread(() -> SpringApplication.run(ReviewerApplicationBoot.class, args));
         springBootThread.start();
     }
-
 }

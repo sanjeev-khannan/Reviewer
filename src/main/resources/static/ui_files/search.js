@@ -4,13 +4,23 @@ fillSearchResults();
 async function searchPhrase(){
     
     const searchPhrase = document.getElementById("search_box").value
-
+	const price = document.getElementById("selected_price").value
+	const rating = document.getElementById("selected_rating").value
+	const sorting = document.getElementById("selected_sorting").value
+	obj = {
+		'searchPhrase': searchPhrase,
+		'price': price,
+		'sorting': sorting,
+		'rating': rating
+	}
+	json_body = JSON.stringify(obj);
 	try{
-		const response = await fetch('/venue?search_phrase=' + searchPhrase, {
-			method: 'GET',
+		const response = await fetch('/venue', {
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
-			}
+			},
+			body: json_body
 		});
 		const statusCode = response.status;
 		const data = await response.text();
@@ -32,7 +42,6 @@ function fillSearchResults() {
 		.then(data => {
 			// Handle the response data
 			searchPhrase().then(result => {
-				console.log(result)
 				var template = Handlebars.compile(data);
 				const htmldata = template({ venues : result });
 				const page_body = document.getElementById("search_results_section");

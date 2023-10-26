@@ -138,6 +138,7 @@ p {
 	height: 600px;
 	overflow-y: auto;
 	border-radius: 10px;
+	background-color: #f0f0f0;
 }
 
 .vertical-menu a {
@@ -327,3 +328,4 @@ p {
 	border-radius: 20px;
 	/* Adjust the value as needed */
 }
+

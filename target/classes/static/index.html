@@ -88,7 +88,6 @@
 	<section class="content" id="page_body">
 		<div class="container-fluid">
 			<div class="row">
-<<<<<<< Updated upstream
 				<div class="col-lg-2" style="background-color: #0a0a0a; border-radius: 10px; padding: 10px;">
 					<h3 style="text-align: center;">Categories</h3>
 					<div class="vertical-menu">
@@ -101,21 +100,6 @@
 						<a class="nav-link" href="#">Bar</a>
 						<a class="nav-link" href="#">Visit</a>
 					</div>
-=======
-				<div class="col-lg-2">
-					<h3 style="text-align: center;">Categories</h3>
-					<div class="vertical-menu">
-						<a class="nav-link active" href="#" >Restaurants</a> 
-						<a class="nav-link" href="#">Museum</a>
-						<a class="nav-link" href="#">Scenic/tickets</a> 
-						<a class="nav-link" href="#">Shopping</a> 
-						<a class="nav-link" href="#">Hotel</a> 
-						<a class="nav-link" href="#">Flight</a> 
-						<a class="nav-link" href="#">Bar</a> 
-						<a class="nav-link" href="#">Visit</a>
-					</div>
-
->>>>>>> Stashed changes
 				</div>
 				<!-- Merchants section -->
 				<div class="col-lg-1" style="width: 10px; height: max-content;">
@@ -124,7 +108,6 @@
 
 
 				<div class="col-lg-8">
-<<<<<<< Updated upstream
 					<div class="horizontal-dropdowns">
 						<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -227,13 +210,11 @@
 						  
 					  </div>
 					  
-=======
->>>>>>> Stashed changes
 					<div class="row">
 
 						<div class="col-lg-4">
 							<div class="card">
-								<div class="card-in" onclick="window.open('https://antoyabbq.com/menu','_self')">
+								<div class="card-in" >
 									<img class="image" src="./images/korean.jpg">
 									<h4>
 										<b>Korean Dishes</b>
@@ -418,9 +399,97 @@
 	</section>
 
 
+	<!-- Modal -->
+	<div id="cardDetailsModal" class="modal">
+		<div class="modal-content">
+		  <span class="close" id="closeModal">&times;</span>
+		  <div class="modal-header">
+			<h2>Korean Dishes</h2>
+		  </div>
+		  <div class="modal-body">
+			<div class="card-details">
+			  <!-- Place card details content here -->
+			  <div class="card-image">
+				<img src="./images/korean.jpg" alt="Card Image">
+			  </div>
+			  <div class="card-info">
+				<h3>Korean Dishes</h3>
+				<p>Rating: 4.5/5</p>
+				<p>Price Range: $20 - $50</p>
+				<p>Address: 123 Main St, City, Country</p>
+				<!-- Comment Section -->
+				<div class="comment-section">
+				  <div class="comment">
+					<div class="comment-text">
+					  This is a sample comment. It can be multiple lines long.ss 
+					</div>
+					<div class="comment-actions">
+						<button class="upvote"><i class="fas fa-thumbs-up"></i></button>
+						<button class="downvote"><i class="fas fa-thumbs-down"></i></button>						
+					</div>
+				  </div>
+				  <div class="comment">
+					<div class="comment-text">
+					  This is a sample comment. It can be multiple lines long...
+					</div>
+					<div class="comment-actions">
+						<button class="upvote"><i class="fas fa-thumbs-up"></i></button>
+						<button class="downvote"><i class="fas fa-thumbs-down"></i></button>
+					</div>
+				  </div>
+				  <div class="comment">
+					<div class="comment-text">
+					  This is a sample comment. It can be multiple lines long.
+					</div>
+					<div class="comment-actions">
+						<button class="upvote"><i class="fas fa-thumbs-up"></i></button>
+						<button class="downvote"><i class="fas fa-thumbs-down"></i></button>
+					</div>
+				  </div>
+				  <!-- Add more comments as needed -->
+				</div>
+				<!-- End of Comment Section -->
+				
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	  
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+
+			const modal = document.getElementById('cardDetailsModal');
+			const closeModal = document.getElementById('closeModal');
+
+
+			const cards = document.querySelectorAll('.card-in');
+
+
+			cards.forEach((card, index) => {
+				card.addEventListener('click', () => {
+
+					modal.style.display = 'block';
+				});
+			});
+
+
+			closeModal.addEventListener('click', () => {
+				modal.style.display = 'none';
+			});
+
+
+			window.addEventListener('click', (event) => {
+				if (event.target === modal) {
+					modal.style.display = 'none';
+				}
+			});
+		});
+	</script>
 
 </body>
-<<<<<<< Updated upstream
 <script>
 	function toggleCheck(element) {
 	  const icon = element.querySelector('i');
@@ -433,7 +502,5 @@
 	  }
 	}
 	</script>
-=======
->>>>>>> Stashed changes
 
 </html>

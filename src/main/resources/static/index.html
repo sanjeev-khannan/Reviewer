@@ -14,7 +14,6 @@
 
 	<script src="./ui_files/index.js"></script>
 	<script src="./ui_files/search.js"></script>
-
 	<!-- import css style  -->
 	<link rel="stylesheet" href="./ui_files/style.css">
 
@@ -92,14 +91,15 @@
 			<div class="row">
 				<div class="col-lg-2">
 					<h3 style="text-align: center;">Categories</h3>
+					<input type="hidden" id="selected_venueType" value="" />
 					<div class="vertical-menu">
-						<a class="nav-link active" href="#">All</a>
-						<a class="nav-link" href="#">Restaurants</a>
-						<a class="nav-link" href="#">Hotels</a>
-						<a class="nav-link" href="#">Events</a>
-						<a class="nav-link" href="#">Bar</a>
-						<a class="nav-link" href="#">Cinema</a>
-						<a class="nav-link" href="#">Activities</a>
+						<a class="nav-link active" onclick="selectVenueType('')">All</a>
+						<a class="nav-link" onclick="selectVenueType('Restaurant')">Restaurants</a>
+						<a class="nav-link" onclick="selectVenueType('Hotels')">Hotels</a>
+						<a class="nav-link" onclick="selectVenueType('Events')">Events</a>
+						<a class="nav-link" onclick="selectVenueType('Bar')">Bar</a>
+						<a class="nav-link" onclick="selectVenueType('Cinema')">Cinema</a>
+						<a class="nav-link" onclick="selectVenueType('Activities')">Activities</a>
 					</div>
 
 				</div>
@@ -110,7 +110,7 @@
 
 				<div class="horizontal-dropdowns">
 					<p style="font-weight:bold;font-size: 22px;">Filters : &nbsp;&nbsp;</p>
-				
+
 					<input type="hidden" id="selected_rating" value="" />
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -135,7 +135,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<input type="hidden" id="selected_price" value="" />
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -162,7 +162,7 @@
 						</div>
 					</div>
 
-					
+
 					<input type="hidden" id="selected_sorting" value="" />
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -182,20 +182,27 @@
 							<div class="dropdown-item" onclick="selectSort('o3')">
 								<a><i id="sort_o3" class="far fa-check-circle"></i> Rating: Low to High</a>
 							</div>
-							
+
 							<div class="dropdown-item" onclick="selectSort('o4')">
 								<a><i id="sort_o4" class="far fa-check-circle"></i> Rating: High to Low</a>
 							</div>
 						</div>
 					</div>
 
-					
-					<button class="btn btn-primary" type="button" style="height:fit-content;" onclick="resetFilters()" >Reset</button>
+
+					<button class="btn btn-primary" type="button" style="height:fit-content;"
+						onclick="resetFilters()">Reset</button>
 
 				</div>
 
 				<div id="search_results_section">
+
 				</div>
+				<!-- Modal -->
+				<div id="venueBlock">
+
+				</div>
+
 			</div>
 		</div>
 	</section>
@@ -258,9 +265,6 @@
 			</div>
 		</div>
 	</section>
-
-
-
 </body>
 
 </html>

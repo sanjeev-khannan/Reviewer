@@ -1,0 +1,257 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+    /* Modal styles */
+    .modal {
+        display: block;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 80%;
+    }
+
+    .close {
+        color: #080a1f;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: grey;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .card-details {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+    }
+
+    .card-image {
+        flex: 1;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .card-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .card-info {
+        flex: 2;
+        padding: 10px;
+    }
+
+    .card-info h3 {
+        font-size: 2.0rem;
+    }
+
+    .card-info p {
+        color: #4c5883;
+        margin: 5px 0;
+    }
+
+    /* Comment Section Styles */
+    .review-section {
+        background-color: #080a1f;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 20px;
+        max-height: 600px;
+    }
+
+    .review {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .review .review-text {
+        flex: 1;
+    }
+
+    .review .review-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .review .review-actions button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .review .review-actions button:hover {
+        color: #007bff;
+        /* Change color on hover */
+    }
+
+    .review .upvote {
+        color: green;
+    }
+
+    .review .downvote {
+        color: red;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+        .review-section {
+            max-height: 150px;
+            /* Adjust maximum height for smaller screens */
+        }
+
+        .review {
+            flex-direction: column;
+        }
+
+        .review .review-actions {
+            flex-direction: row;
+        }
+    }
+
+
+    .mySlides {
+        display: none
+    }
+
+    .w3-left,
+    .w3-right,
+    .w3-badge {
+        cursor: pointer
+    }
+
+    .w3-badge {
+        height: 13px;
+        width: 13px;
+        padding: 0
+    }
+
+    .legends {
+        font-weight: bolder;
+    }
+</style>
+
+
+<div id="cardDetailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeVenueBlock()" id="closeModal">&times;</span>
+        <div class="modal-header" style="background-color: #080a1f;text-align: center; color: #f2f2f2;">
+            <h2>{{{venueName}}}
+                <p style="text-align: center;">{{{printItems rating}}}</p>
+            </h2>
+        </div>
+        <div class="modal-body">
+            <div class="card-details">
+                <!-- Place card details content here -->
+                <div class="card-image">
+                    <div class="w3-container" style="display: flex;">
+                        <div id="column1" class="w3-display-container column" style="flex:1">
+                            <img class="mySlides" src="{{{imageUrl}}}">
+                            <img class="mySlides" src="../images/steak.jpg">
+                            <img class="mySlides" src="../images/steak.jpg">
+                            <div
+                                class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle">
+                                <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                                <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                                <span class="w3-badge demo w3-border w3-transparent w3-hover-white"
+                                    onclick="currentDiv(1)"></span>
+                                <span class="w3-badge demo w3-border w3-transparent w3-hover-white"
+                                    onclick="currentDiv(2)"></span>
+                                <span class="w3-badge demo w3-border w3-transparent w3-hover-white"
+                                    onclick="currentDiv(3)"></span>
+                            </div>
+                        </div>
+
+                        <div id="column2" class="card-info column" style="flex:1; text-align:left;">
+                            <span class="legends"> 💸 We offer dishes from </span> 💲{{{minPrice}}} to 💲{{{maxPrice}}}
+                            <br>
+                            <span class="legends">📲 You can contact us at </span> {{{mobileNumber}}}
+                            <br>
+                            <span class="legends">📧 Or through email </span> {{{venueEmail}}}
+                            <br>
+                            <span class="legends">🌎 To know more about us visit </span> <a
+                                href="{{{website}}}">{{{website}}}</a>
+                            <br>
+                            <!-- <span class="legends">🗒️ Short note on us:</span> 
+                            <br>
+                            {{{venueDescription}}}
+                            <br> -->
+                            <span class="legends">📍 We are located at : </span>
+                            <br>
+                            {{{venueAddress1}}}
+                            <br>
+                            {{{venueAddress2}}}
+                            <br>
+                            {{{city}}}
+                            <br>
+                            {{{zipcode}}}
+                            <br>
+                        </div>
+                    </div>
+                    <hr style="background-color: #080a1f; height: 1px;">
+                    <div style="background-color: #080a1f; padding-inline: 15px;">
+                        <div style="color: #f2f2f2; padding-top: 15px;" id="user_reviewing_block">
+                            <span style="font-size: 20px; font-weight: bolder;">Give us a rating here </span>
+
+                            <!-- Star Rating Section -->
+                            <div class="rating-section">
+                                <div class="user_rating" style="font-size: x-large;">
+                                    <input type="hidden" id="selected_user_rating" value="" />
+                                    <span class="fa fa-star unchecked" onclick="userRating(1)" id="user_star1"></span>
+                                    <span class="fa fa-star unchecked" onclick="userRating(2)" id="user_star2"></span>
+                                    <span class="fa fa-star unchecked" onclick="userRating(3)" id="user_star3"></span>
+                                    <span class="fa fa-star unchecked" onclick="userRating(4)" id="user_star4"></span>
+                                    <span class="fa fa-star unchecked" onclick="userRating(5)" id="user_star5"></span>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- Review Textbox -->
+                            <div class="form-group">
+                                <textarea class="form-control" id="review_text" rows="4"
+                                    placeholder="Write your review here.."></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="button" class="btn btn-primary" onclick="submitReview({{venueId}})">Submit
+                                Review</button>
+                        </div>
+                        <br>
+                        <!-- Comment Section -->
+                        <hr style="background-color: #080a1f; height: 1px;">
+                        <div class="review-section" id="review-section">
+
+                        </div>
+                        <!-- End of Comment Section -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reviews")
-public class Review {
+public class Reviews {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
@@ -24,6 +24,9 @@ public class Review {
 
     @Column(name = "venue_id")
     private Long venueId;
+
+    @Column(name = "rating")
+    private Long rating;
 
     @Column(name = "review")
     private String review;
@@ -37,13 +40,21 @@ public class Review {
     // Constructors, getters, setters, and any other methods can be added here
 
     // Default constructor
-    public Review() {
+    public Reviews() {
     }
 
     // Parameterized constructor
-    public Review(Long userId, String review) {
+    public Reviews(Long userId, String review) {
         this.userId = userId;
         this.review = review;
+    }
+
+    public Long getRating() {
+        return rating;
+    }
+
+    public void setRating(Long rating) {
+        this.rating = rating;
     }
 
     public Long getReviewId() {
@@ -94,18 +105,18 @@ public class Review {
         this.venueId = venueId;
     }
 
-	@PrePersist
-	protected void onCreate() {
-		this.createdAt = LocalDateTime.now();
-		this.updatedAt = this.createdAt;
-	}
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
+    }
 
-	@PreUpdate
-	protected void onUpdate() {
-		this.updatedAt = LocalDateTime.now();
-	}
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 
     // Getters and Setters for other fields
     // You can generate these using your IDE or write them manually
-    
+
 }

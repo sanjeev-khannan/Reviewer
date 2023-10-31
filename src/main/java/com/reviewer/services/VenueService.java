@@ -18,52 +18,45 @@ import jakarta.persistence.criteria.Root;
 
 @Service
 public class VenueService {
-    
+
     @Autowired
     private VenueRepository venueRepository;
 
     @Autowired
     private EntityManager entityManager;
 
-    public int[] getPriceRange(String option){
-        if(option.equals("o1")){
-            return new int[]{0, 20, 1000000, 0};
-        }
-        else if(option.equals("o2")){
-            return new int[]{0, 100, 1000000, 0};
-        }
-        else if(option.equals("o3")){
-            return new int[]{20, 150, 150, 0};
-        }
-        else if(option.equals("o4")){
-            return new int[]{0, 1000000, 1000000, 100};
-        }
-        else{
-            return new int[]{0, 1000000, 1000000, 0};
+    public int[] getPriceRange(String option) {
+        if (option.equals("o1")) {
+            return new int[] { 0, 20, 1000000, 0 };
+        } else if (option.equals("o2")) {
+            return new int[] { 0, 100, 1000000, 0 };
+        } else if (option.equals("o3")) {
+            return new int[] { 20, 150, 150, 0 };
+        } else if (option.equals("o4")) {
+            return new int[] { 0, 1000000, 1000000, 100 };
+        } else {
+            return new int[] { 0, 1000000, 1000000, 0 };
         }
     }
 
-    public Order getSortingCriteria(String option, CriteriaBuilder criteriaBuilder, Root<Venue> root){
-        if(option.equals("o1")){
+    public Order getSortingCriteria(String option, CriteriaBuilder criteriaBuilder, Root<Venue> root) {
+        if (option.equals("o1")) {
             return criteriaBuilder.asc(root.get("minPrice"));
-        }
-        else if(option.equals("o2")){
+        } else if (option.equals("o2")) {
             return criteriaBuilder.desc(root.get("maxPrice"));
-        }
-        else if(option.equals("o3")){
+        } else if (option.equals("o3")) {
             return criteriaBuilder.asc(root.get("rating"));
-        }
-        else if(option.equals("o4")){
+        } else if (option.equals("o4")) {
             return criteriaBuilder.desc(root.get("rating"));
-        }
-        else{
+        } else {
             return criteriaBuilder.asc(root.get("venueName"));
         }
     }
-    public List<Venue> findVenueWithCriteria(SearchQuery searchQuery){
-        
+
+    public List<Venue> findVenueWithCriteria(SearchQuery searchQuery) {
+
         String search_phrase = '%' + searchQuery.getSearchPhrase().toLowerCase() + '%';
-        
+
         String price = searchQuery.getPrice();
         int[] price_range = getPriceRange(price);
         int min_price_greater = price_range[0];
@@ -71,7 +64,9 @@ public class VenueService {
         int max_price_lesser = price_range[2];
         int max_price_greater = price_range[3];
 
-        int rating = (searchQuery.getRating()!="")?Integer.parseInt(searchQuery.getRating()):0;
+        String venueType = searchQuery.getVenueType();
+
+        int rating = (searchQuery.getRating() != "") ? Integer.parseInt(searchQuery.getRating()) : 0;
 
         String sorting = searchQuery.getSorting();
 
@@ -81,26 +76,44 @@ public class VenueService {
 
         Predicate predicate = criteriaBuilder.conjunction(); // Initialize with AND
 
-        predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(criteriaBuilder.lower(root.get("venueName")), search_phrase));
-        
-        predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("minPrice"), min_price_greater));
-        predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("minPrice"), min_price_lesser));
-        predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("maxPrice"), max_price_lesser));
-        predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("maxPrice"), max_price_greater));
+        predicate = criteriaBuilder.and(predicate,
+                criteriaBuilder.like(criteriaBuilder.lower(root.get("venueName")), search_phrase));
+
+        predicate = criteriaBuilder.and(predicate,
+                criteriaBuilder.greaterThanOrEqualTo(root.get("minPrice"), min_price_greater));
+        predicate = criteriaBuilder.and(predicate,
+                criteriaBuilder.lessThanOrEqualTo(root.get("minPrice"), min_price_lesser));
+        predicate = criteriaBuilder.and(predicate,
+                criteriaBuilder.lessThanOrEqualTo(root.get("maxPrice"), max_price_lesser));
+        predicate = criteriaBuilder.and(predicate,
+                criteriaBuilder.greaterThanOrEqualTo(root.get("maxPrice"), max_price_greater));
 
         predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("rating"), rating));
 
+        if (venueType != null && venueType != "") {
+            System.out.println("Setting" + venueType);
+            predicate = criteriaBuilder.and(predicate,
+                    criteriaBuilder.equal(root.get("venueType"), venueType));
+        }
+
         criteriaQuery.where(predicate);
-        
+
         criteriaQuery.orderBy(getSortingCriteria(sorting, criteriaBuilder, root));
 
         List<Venue> venues = entityManager.createQuery(criteriaQuery).getResultList();
         return venues;
     }
 
-    public List<Venue> getAllVenues(){
-        
+    public List<Venue> getAllVenues() {
+
         List<Venue> venues = venueRepository.findAll();
         return venues;
+    }
+
+    public Venue findByVenueId(Long venue_id) throws Exception {
+        if (venue_id == null || venue_id < 0) {
+            throw new Exception("VenueService: Invalid VenueID");
+        }
+        return venueRepository.findByVenueId(venue_id);
     }
 }

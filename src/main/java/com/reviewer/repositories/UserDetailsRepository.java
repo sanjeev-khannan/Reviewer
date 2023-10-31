@@ -10,6 +10,8 @@ public interface UserDetailsRepository extends JpaRepository<User, Long> {
 
 	public User findByEmail(String email);
 
+	public User findByUserId(Long userId);
+
 	public boolean existsByEmail(String email);
 
 	public boolean existsByMobileNumber(String mobileNumber);

@@ -1,19 +1,18 @@
-
 <style>
-
-
-.item {
-    display: inline-block; /* Display items horizontally */
-    margin-right: 10px; /* Add some space between items (adjust as needed) */
-    /* border: 1px solid #ccc; Add borders to items for visual separation */
-    padding: 10px; /* Add padding to items for spacing and styling */
-}
-
+    .item {
+        display: inline-block;
+        /* Display items horizontally */
+        margin-right: 10px;
+        /* Add some space between items (adjust as needed) */
+        /* border: 1px solid #ccc; Add borders to items for visual separation */
+        padding: 10px;
+        /* Add padding to items for spacing and styling */
+    }
 </style>
 
 <div class="item-container">
     {{#each venues}}
-    <div class="item">
+    <div class="item" onclick="loadVenue({{venueId}})">
         <div class="card">
             <div class="card-in">
                 <img class="image" src="{{{imageUrl}}}">
@@ -25,12 +24,12 @@
                 </p>
                 <div>
                     {{{printItems rating}}}
-                <!-- <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+                    <!-- <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span> -->
                 </div>
                 <h3>
-                <b>${{{minPrice}}} - ${{{maxPrice}}}</b>
+                    <b>${{{minPrice}}} - ${{{maxPrice}}}</b>
                 </h3>
             </div>
         </div>

@@ -1,0 +1,55 @@
+<div style="text-align: left; color: white;" onclick="loadReviews({{venue_id}})">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-backspace-fill"
+        viewBox="0 0 16 16">
+        <path
+            d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z" />
+    </svg>
+</div>
+<span style="font-size: 20px; font-weight: bolder; color: #f2f2f2;">User Reviews</span>
+<br>
+<br>
+<!-- {{{reviews}}} -->
+
+<div class="review">
+    <div class="review-text">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin:-1px" fill="currentColor"
+            class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </svg>
+        &nbsp;
+        <span class="legends">{{{user_name}}}</span>
+        <br>
+        <span style="text-align: center;">{{{review}}}</span>
+    </div>
+    <div class="review-actions">
+        <button class="upvote"><i id="upvote_{{{review_id}}}" onclick="likeReview({{review_id}}, 1, 0)"
+                class="{{{upvote_class}}} fa-thumbs-up">&nbsp;{{{like_count}}}</i></button>
+        <button class="downvote"><i id="downvote_{{{review_id}}}" onclick="likeReview({{review_id}}, 0, 1)"
+                class="{{{downvote_class}}} fa-thumbs-down">&nbsp;{{{dislike_count}}}</i></button>
+    </div>
+</div>
+<div class="form-group">
+    <textarea class="form-control" id="comment_text" rows="2" placeholder="Reply here.."></textarea>
+</div>
+
+<!-- Submit Button -->
+<button type="button" class="btn btn-primary" onclick="submitComment({{review_id}})">Reply</button>
+<br>
+<span style="font-size: 20px; font-weight: bolder; color: #f2f2f2;">Comments</span>
+<br>
+{{#each comments}}
+<div class="review" style="background-color: #4c5883; color:#f2f2f2" id="comment_{{{commentId}}}">
+    <div class="review-text" style="align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin:-1px" fill="currentColor"
+            class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </svg>
+        &nbsp;
+        <span style="text-align: center;">{{{comment}}}</span>
+    </div>
+</div>
+{{/each}}

@@ -37,7 +37,6 @@ public class JwtUtils implements Serializable {
 			String username = getUsernameFromToken(token);
 			Date expirationDate = getExpirationDateFromToken(token);
 			User user = this.userDetailsService.loadUserByUsername(username);
-			System.out.println("User - " + user.getEmail() + " Token Date - " + expirationDate.toString());
 			if (expirationDate.before(new Date())) {
 				throw new SignatureException("Token Expired");
 			}

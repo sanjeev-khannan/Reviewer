@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ReviewerApplicationBoot {
 
     public static void main(String[] args) {
-        Thread springBootThread = new Thread(() -> SpringApplication.run(ReviewerApplicationBoot.class, args));
-        springBootThread.start();
+        SpringApplication.run(ReviewerApplicationBoot.class, args);
     }
 }

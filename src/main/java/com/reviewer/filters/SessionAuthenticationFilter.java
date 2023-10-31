@@ -27,14 +27,15 @@ public class SessionAuthenticationFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 
 		final String uri = request.getRequestURI();
-		System.out.println("Got Request - " + uri);
 
 		final String token = request.getHeader("Authorization");
 
-		if (isPermitFree(uri)) {
-			filterChain.doFilter(request, response);
-		} else if (token == null) {
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "AUTHENTICATION_TOKEN_MISSING");
+		if (token == null) {
+			if (isPermitFree(uri)) {
+				filterChain.doFilter(request, response);
+			} else {
+				response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "AUTHENTICATION_TOKEN_MISSING");
+			}
 		} else if (token.startsWith("Bearer")) {
 			String jwt_token = token.substring(7);
 			User user = jwtutil.validateToken(jwt_token);
@@ -55,12 +56,15 @@ public class SessionAuthenticationFilter extends OncePerRequestFilter {
 
 	private boolean isPermitFree(String uri) {
 
-		if (uri.equals("/") 
-				|| uri.startsWith("/ui_files") 
+		if (uri.equals("/")
+				|| uri.startsWith("/ui_files")
 				|| uri.startsWith("/images")
 				|| uri.equals("/authenticate")
 				|| uri.equals("/signup")
-				|| uri.equals("/venue")) {
+				|| uri.startsWith("/venue")
+				|| uri.equals("/render")
+				|| uri.equals("/getreviews")
+				|| uri.equals("/getcomments")) {
 			return true;
 		}
 		return false;

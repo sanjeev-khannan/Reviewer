@@ -82,4 +82,7 @@ public class LoginService {
 		userDetailsRepository.delete(user);
     }
 
+	public User getUser(Long userId) {
+		return userDetailsRepository.findByUserId(userId);
+    }
 }

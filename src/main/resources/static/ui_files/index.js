@@ -630,11 +630,11 @@ function selectSort(sortValue) {
 function selectRating(ratingValue) {
 	// Set the selected price value in the hidden form field
 	for (var i = 1; i < 6; i++) {
-		document.getElementById("rating_o" + i).style="";
+		document.getElementById("rating_o" + i).style = "";
 	}
 	previousValue = document.getElementById("selected_rating").value;
 	if (previousValue != ratingValue) {
-		document.getElementById("rating_o" + ratingValue).style="color:midnightblue";
+		document.getElementById("rating_o" + ratingValue).style = "color:midnightblue";
 		document.getElementById("selected_rating").value = ratingValue;
 	}
 	else {
@@ -663,3 +663,7 @@ function resetFilters() {
 
 	fillSearchResults();
 }
+
+
+
+// loadVenue();

@@ -36,6 +36,40 @@ async function searchPhrase() {
 
 }
 
+async function searchKeywords() {
+
+	const searchPhrase = document.getElementById("search_box").value
+	if (searchPhrase.length > 0) {
+		obj = {
+			'searchPhrase': searchPhrase,
+			'price': '',
+			'sorting': '',
+			'rating': '',
+			'venueType': ''
+		}
+		json_body = JSON.stringify(obj);
+		try {
+			const response = await fetch('/venue/getfromquery', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: json_body
+			});
+			const statusCode = response.status;
+			const data = await response.text();
+			return JSON.parse(data)
+		} catch (error) {
+			// Handle errors
+			console.log('error', error);
+			return [];
+		}
+	}
+	else {
+		return [];
+	}
+}
+
 function selectVenueType(venue_type) {
 
 	document.getElementById('selected_venueType').value = venue_type;
@@ -318,6 +352,7 @@ function submitReview(venueId) {
 			.then(response => response.text())
 			.then(data => {
 				alert("Thank you for you review!!");
+				loadReviews(venueId);
 			})
 			.catch(error => {
 				// Handle errors

@@ -328,3 +328,26 @@ p {
 	width: max-content;
 	/* Adjust the value as needed */
 }
+
+#suggestionDropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+	margin-left: 40px;
+	width: 45%;
+}
+
+.suggestion {
+    padding: 12px 16px;
+    text-decoration: none;
+	color:#080a1f;
+    display: block;
+    cursor: pointer;
+}
+
+.suggestion:hover {
+    background-color: #f1f1f1;
+}

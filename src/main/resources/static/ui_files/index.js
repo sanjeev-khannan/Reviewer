@@ -664,6 +664,36 @@ function resetFilters() {
 	fillSearchResults();
 }
 
+// Handle suggestion click
+$(document).on('click', '.suggestion', function () {
+	const selectedSuggestion = $(this).text();
+	$('#search_box').val(selectedSuggestion);
+	$('#suggestionDropdown').hide();
+});
 
+function fillSearchSuggestions() {
 
-// loadVenue();
+	var matchingSuggestions = [];
+
+	searchKeywords().then(result => {
+		result.forEach(venue => {
+			matchingSuggestions.push(venue['venueName'])
+		});
+		var dropdown = $('#suggestionDropdown');
+		dropdown.empty();
+
+		if (matchingSuggestions.length > 0) {
+			// Add matching suggestions to the dropdown
+			matchingSuggestions.slice(0, 5).forEach(suggestion => {
+				dropdown.append(`<p class="suggestion">${suggestion}</p>`);
+			})
+
+			dropdown.show();
+			// Show the dropdown
+		} else {
+			// Hide the dropdown if there are no matching suggestions
+			dropdown.hide();
+		}
+	});
+
+}

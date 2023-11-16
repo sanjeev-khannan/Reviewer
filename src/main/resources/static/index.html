@@ -34,7 +34,7 @@
 				<!-- Search button section -->
 				<form class="navbar-form navbar-left">
 					<div class="input-group">
-						<input type="text" style="font-size: 15px;" class="form-control" id="search_box"
+						<input type="text" style="font-size: 15px;" class="form-control" oninput="fillSearchSuggestions()" id="search_box"
 							placeholder="Search Here">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="button" onclick="fillSearchResults()">
@@ -42,7 +42,10 @@
 							</button>
 						</div>
 					</div>
+					<!-- Suggestions dropdown -->
+					<div id="suggestionDropdown"></div>
 				</form>
+				
 				<!-- The code for the search button ends here -->
 				<ul class="nav navbar-nav navbar-right" style="padding-top: 10px; padding-right: 10px;">
 					<li><a href="#" style="padding: 10px; margin-right: 20px;">New
@@ -132,7 +135,7 @@
 							</div>
 							<div class="dropdown-item">
 								<a onclick="selectRating('5')" id="rating_o5">★★★★★</a>
-							</div>
+							</div> 
 						</div>
 					</div>
 

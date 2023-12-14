@@ -53,7 +53,7 @@ public class LoginService {
 		return "success";
 	}
 
-	public boolean validateUserDetails(User user){
+	public boolean validateUserDetails(User user) {
 		return true;
 	}
 
@@ -78,11 +78,11 @@ public class LoginService {
 		}
 	}
 
-    public void deleteAccount(User user) {
+	public void deleteAccount(User user) {
 		userDetailsRepository.delete(user);
-    }
+	}
 
 	public User getUser(Long userId) {
 		return userDetailsRepository.findByUserId(userId);
-    }
+	}
 }

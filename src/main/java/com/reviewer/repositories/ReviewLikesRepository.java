@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.reviewer.dao.ReviewLikes;
 
 @Repository
-public interface ReviewLikesRepository extends JpaRepository<ReviewLikes , Long>{
-    
+public interface ReviewLikesRepository extends JpaRepository<ReviewLikes, Long> {
+
     public ReviewLikes findByReviewId(Long reviewId);
 }

@@ -1,0 +1,189 @@
+<style>
+    .delete_section {
+        margin: 40px;
+        background-color: white;
+        border-radius: 10px;
+        width: 80%;
+    }
+
+    .dropdown-btn {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #4c5883;
+            color:whitesmoke;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .bordered-text {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #3498db; /* Border color */
+            color: #3498db; /* Text color */
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px; /* Optional: Rounded corners */
+        }
+
+        .bordered-text:hover {
+            background-color: #3498db; /* Background color on hover */
+            color: #fff; /* Text color on hover */
+        }
+
+        .emp-button {
+            background-color: #1e1f2e;
+            color: whitesmoke;
+            text-align: center;
+            border-radius: 0px;
+        }
+
+        .item-mod {
+            background-color: #1e1f2e;
+        }
+        
+        .item {
+            width: fit-content;
+        }
+
+        .item-container {
+            display: flex;
+        }
+</style>
+
+<div class="delete_section">
+    <div style="padding: 20px;">
+        <h4 style="color:black">Most Liked Category</h4>
+        <div class="dropdown">
+            <button class="dropdown-btn" id="selectedOption">Restaurant</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="changeOption('Hotel')">Hotels</a>
+                <a href="#" onclick="changeOption('Restaurants')">Restaurants</a>
+                <a href="#" onclick="changeOption('Events')">Events</a>
+                <a href="#" onclick="changeOption('Bar')">Bar</a>
+                <a href="#" onclick="changeOption('Cinema')">Cinema</a>
+                <a href="#" onclick="changeOption('Activities')">Activities</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="delete_section">
+    <div style="padding: 20px;">
+        <h4 style="color:black">Most Liked Category - Based on Ratings and Reviews of last 2 months</h4>
+        <div class="dropdown">
+            <button class="dropdown-btn emp-button" id="selectedOpt ion">Restaurant</button>
+        </div>
+    </div>
+</div>
+
+<div class="delete_section">
+    <div style="padding: 20px;">
+        <h4 style="color:black">Most Liked Category - Based on Review Likes of last 2 months</h4>
+        <div class="dropdown">
+            <button class="dropdown-btn emp-button" id="selectedOption2">Events</button>
+        </div>
+    </div>
+</div>
+
+<div class="delete_section">
+    <div style="padding: 20px;">
+        <h4 style="color:black">Most Liked 3 Restaurants - Based on Ratings and Reviews of last 2 months</h4>
+        <div class="item-container">
+            <div class="item" onclick="openVenue(1)">
+                <div class="card item-mod">
+                    <div class="card-in">
+                        <img class="image" src="./images/korean.jpg">
+                        <h4>
+                            <b>Korean Delights</b>
+                        </h4>
+                        <p>
+                            <b>Restaurant</b>
+                        </p>
+                        <div>
+                            <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star-half checked"></span>
+                            <!-- <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span> -->
+                        </div>
+                        <h3>
+                            <b>$20 - $100</b>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="item" onclick="loadVenue(6)">
+                <div class="card item-mod">
+                    <div class="card-in">
+                        <img class="image" src="https://media.cntraveler.com/photos/59ca6488e11975084c5841ea/16:9/w_4015,h_2258,c_limit/Federal_160415_FEDERALdonuts64786.jpg">
+                        <h4>
+                            <b>Dunkin Donuts</b>
+                        </h4>
+                        <p>
+                            <b>Restaurant</b>
+                        </p>
+                        <div>
+                            <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star-half checked"></span>
+                            <!-- <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span> -->
+                        </div>
+                        <h3>
+                            <b>$34 - $99</b>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" onclick="loadVenue(4)">
+                <div class="card item-mod">
+                    <div class="card-in">
+                        <img class="image" src="https://thehalalguys.com/img/upload/hero-image-1_2.jpg">
+                        <h4>
+                            <b>Halal Guys</b>
+                        </h4>
+                        <p>
+                            <b>Restaurant</b>
+                        </p>
+                        <div>
+                            <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star-half checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+                            <!-- <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span> -->
+                        </div>
+                        <h3>
+                            <b>$5 - $30</b>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

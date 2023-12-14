@@ -608,7 +608,7 @@ function selectPrice(priceValue) {
 }
 function selectSort(sortValue) {
 	// Set the selected price value in the hidden form field
-	for (var i = 1; i < 5; i++) {
+	for (var i = 1; i < 6; i++) {
 		const clsList = document.getElementById("sort_o" + i).classList;
 		clsList.remove('fas');
 		clsList.add('far');
@@ -645,7 +645,7 @@ function selectRating(ratingValue) {
 
 function resetFilters() {
 
-	for (var i = 1; i < 5; i++) {
+	for (var i = 1; i < 6; i++) {
 		const clsList = document.getElementById("sort_o" + i).classList;
 		clsList.remove('fas');
 		clsList.add('far');
@@ -696,4 +696,26 @@ function fillSearchSuggestions() {
 		}
 	});
 
+}
+
+
+function viewUsagePatterns() {
+	fetch('./ui_files/usage_pattern.html', {
+		method: 'GET'
+	})
+		.then(response => response.text())
+		.then(async data => {
+			// Handle the response data
+			const page_body = document.getElementById("account_section");
+			page_body.innerHTML = data;
+		})
+		.catch(error => {
+			// Handle errors
+			console.log('error', error)
+		});
+}
+
+
+function changeOption(option) {
+	document.getElementById('selectedOption').innerText = option;
 }
